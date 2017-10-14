@@ -3,9 +3,9 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: java:8
+image: java:9
 pipelines:
   default:
     - step:
         script:
-          - bash ./gradlew assembleDebug
+          - bash ./gradlew build
