@@ -1,6 +1,6 @@
 # README #
 
-O README é normalmente utilizado para explicar os passos necessários que irá manter o projeto atualizado e funcionando.
+O README é normalmente utilizado para explicar os passos necessários que irá manter o projeto atualizado e funcionando.  
 
 ### Informações sobre o projeto ###
 
@@ -18,7 +18,7 @@ Exemplo:
 Job: Trocar o nome da aplicação  
 branch: update/troca_nome_do_app  
 
-Antes de iniciar qualquer modificação no projeto, deve-se pegar os últimos commits da branch develop.  
+`Antes de iniciar qualquer modificação no projeto, deve-se pegar os últimos commits da branch develop.`  
 
 Prefixos que podem ser utilizados em uma branch:  
 
@@ -29,7 +29,6 @@ Prefixos que podem ser utilizados em uma branch:
 
 Após a criação da branch e do término das modificações, é necessário fazer o commit e depois o push.  
 Se o push foi feito corretamente, basta acessar o repositório para fazer o pull request com a sua branch e a develop.  
-Ao finalizar o pull request, clicar no botão merge.
 
 ### Passos para configurar o Git ###
 
