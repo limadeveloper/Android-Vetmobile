@@ -5,4 +5,10 @@
     <item name="ic_menu_manage" type="drawable">@android:drawable/ic_menu_manage</item>
     <item name="ic_menu_share" type="drawable">@android:drawable/ic_menu_share</item>
     <item name="ic_menu_send" type="drawable">@android:drawable/ic_menu_send</item>
+    <item name="img_background_01" type="drawable">@drawable/background_01</item>
+    <item name="img_email" type="drawable">@drawable/email</item>
+    <item name="img_logo" type="drawable">@drawable/logo</item>
+    <item name="img_password" type="drawable">@drawable/password</item>
+    <item name="img_phone" type="drawable">@drawable/phone</item>
+    <item name="img_user" type="drawable">@drawable/user</item>
 </resources>
