@@ -69,4 +69,10 @@ Primeiramente é necessário clonar o repositório. Para isso, abra o terminal e
 * `git clone url_do_repositorio`: clona o projeto na pasta selecionada;
 * `git checkout -b nome_da_branch`: cria uma nova branch que representará o job a ser feito;
 * `git commit -m "Descrição do commit"`: faz o commit das modificações feitas no projeto;
-* `git push origin nome_da_branch`: envia os commits para o repositório online;
+* `git push origin nome_da_branch`: envia os commits para o repositório online;  
+
+`As descrições dos commits devem estar no infinitivo, ex.: altera, adiciona, ajusta...`
+
+**Links**
+
+* https://www.youtube.com/watch?v=UMhskLXJuq4&t=37s
