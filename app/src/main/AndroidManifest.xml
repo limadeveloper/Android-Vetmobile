@@ -28,11 +28,13 @@
         <activity
             android:name=".LoginActivity"
             android:label=""
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppCompat.FullScreen">
         </activity>
         <activity
             android:name=".RegisterActivity"
             android:label=""
+            android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppCompat.FullScreen">
         </activity>
     </application>

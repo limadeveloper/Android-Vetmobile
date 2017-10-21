@@ -14,7 +14,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        // Cria um delay de 2s para executar o método showLogin
+        // Cria um delay para executar o método showLogin
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

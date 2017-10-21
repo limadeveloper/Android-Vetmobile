@@ -17,4 +17,5 @@
     <string name="name_birthday">Nascimento</string>
     <string name="name_upload_photo">Minha Foto</string>
     <string name="name_continue">Continuar</string>
+    <string name="wrongBirthdayDate">Algo errado. Selecione sua data de aniversário corretamente.</string>
 </resources>
