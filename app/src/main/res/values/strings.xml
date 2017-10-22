@@ -23,7 +23,8 @@
     <string name="errorFields">Preencha os campos corretamente.</string>
     <string name="name_finish">Finalizar</string>
     <string name="name_add_other">Adicionar Outro</string>
-    <string name="name_user">Usuário</string>
+    <string name="name_login">Login</string>
+    <string name="name_name">Nome</string>
     <string name="name_enter">Entrar</string>
     <string name="name_register">Cadastrar</string>
     <string name="name_vet">Veterinário(a)</string>

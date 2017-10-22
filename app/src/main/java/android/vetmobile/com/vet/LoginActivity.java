@@ -6,10 +6,19 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private EditText loginEditText;
+    private EditText passwordEditText;
+    private Button loginButton;
     private Button registerButton;
+    private RadioButton vetRadioButton;
+    private RadioButton clientRadioButton;
+    private int typeUser = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +27,42 @@ public class LoginActivity extends AppCompatActivity {
 
         setOrientation();
 
-        registerButton = (Button) findViewById(R.id.register_button_id);
+        loginEditText = findViewById(R.id.login_edittext_id);
+        passwordEditText = findViewById(R.id.password_edittext_id);
+        vetRadioButton = findViewById(R.id.vet_radiobutton_id);
+        clientRadioButton= findViewById(R.id.client_radiobutton_id);
+        loginButton = findViewById(R.id.login_button_id);
+        registerButton = findViewById(R.id.register_button_id);
+
+        vetRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (clientRadioButton.isChecked()) {
+                    clientRadioButton.setChecked(false);
+                    typeUser = 1;
+                }
+            }
+        });
+
+        clientRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (vetRadioButton.isChecked()) {
+                    vetRadioButton.setChecked(false);
+                    typeUser = 2;
+                }
+            }
+        });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (typeUser == 0 || !isValidLogin() || !isValidPassword()) {
+                    showMessageErrorFields();
+                    return;
+                }
+            }
+        });
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,5 +79,19 @@ public class LoginActivity extends AppCompatActivity {
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
+    }
+
+    private void showMessageErrorFields() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isValidLogin() {
+        boolean isValid = !loginEditText.getText().toString().isEmpty();
+        return isValid;
+    }
+
+    private boolean isValidPassword() {
+        boolean isValid = !passwordEditText.getText().toString().isEmpty();
+        return isValid;
     }
 }

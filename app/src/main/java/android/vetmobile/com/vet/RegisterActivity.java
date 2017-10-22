@@ -21,7 +21,7 @@ import java.util.Date;
 
 public class RegisterActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
-    private EditText userEditText;
+    private EditText nameEditText;
     private EditText emailEditText;
     private EditText phoneEditText;
     private EditText passwordEditText;
@@ -31,13 +31,14 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     private Button finishButton;
     private Button dateButton;
     private int datePickerDelay = 3000;
+    private String gender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        userEditText = findViewById(R.id.user_edittext_id);
+        nameEditText = findViewById(R.id.name_edittext_id);
         emailEditText = findViewById(R.id.email_edittext_id);
         phoneEditText = findViewById(R.id.phone_edittext_id);
         passwordEditText = findViewById(R.id.password_edittext_id);
@@ -58,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             @Override
             public void onClick(View v) {
 
-                if (!isValidUser() || !isValidEmail() || !isValidPassword()) {
+                if (!isValidLogin() || !isValidEmail() || !isValidPassword() || !isValidUserName()) {
                     showMessageErrorFields();
                     return;
                 }
@@ -73,6 +74,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 if (maleRadioButton.isChecked()) {
                     maleRadioButton.setChecked(false);
+                    gender = "Masculino";
                 }
             }
         });
@@ -82,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             public void onClick(View v) {
                 if (femaleRadioButton.isChecked()) {
                     femaleRadioButton.setChecked(false);
+                    gender = "Feminino";
                 }
             }
         });
@@ -165,17 +168,16 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
     }
 
-    private boolean isValidUser() {
+    private boolean isValidUserName() {
+        return !nameEditText.getText().toString().isEmpty();
+    }
+
+    private boolean isValidLogin() {
         return true;
     }
 
     private boolean isValidEmail() {
         return !TextUtils.isEmpty(emailEditText.getText()) && android.util.Patterns.EMAIL_ADDRESS.matcher(emailEditText.getText()).matches();
-    }
-
-    private boolean isValidPhone() {
-        String phone = phoneEditText.getText().toString();
-        return !phone.isEmpty();
     }
 
     private boolean isValidPassword() {
@@ -194,4 +196,5 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
             phoneEditText.setText(number);
         }
     }
+
 }

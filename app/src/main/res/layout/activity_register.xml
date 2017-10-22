@@ -73,11 +73,32 @@
                     android:layout_gravity="center"/>
 
                 <EditText
+                    android:id="@+id/name_edittext_id"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:hint="@string/name_name"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/user"
+                    android:layout_gravity="center"/>
+
+                <EditText
                     android:id="@+id/user_edittext_id"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:hint="@string/name_user"/>
+                    android:hint="@string/name_login"/>
             </LinearLayout>
 
             <LinearLayout
