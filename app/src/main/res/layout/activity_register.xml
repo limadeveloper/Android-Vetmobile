@@ -98,6 +98,7 @@
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
+                    android:inputType="textEmailAddress"
                     android:hint="@string/name_email"/>
             </LinearLayout>
 
@@ -119,6 +120,7 @@
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
+                    android:inputType="phone"
                     android:hint="@string/name_phone"/>
             </LinearLayout>
 
@@ -140,6 +142,7 @@
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
+                    android:inputType="textPassword"
                     android:hint="@string/name_password"/>
             </LinearLayout>
 
@@ -161,6 +164,7 @@
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
+                    android:inputType="textPassword"
                     android:hint="@string/name_confirm_password"/>
             </LinearLayout>
 
@@ -194,31 +198,11 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:textSize="12sp"
                 android:text="@string/name_birthday"/>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="8dp">
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/green_done"
-                    android:layout_marginRight="3dp"/>
-
-                <Button
-                    android:id="@+id/uploadphoto_button_id"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/name_upload_photo"/>
-            </LinearLayout>
-
             <Button
-                android:id="@+id/done_button_id"
+                android:id="@+id/finish_button_id"
                 android:layout_width="240dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -227,7 +211,8 @@
                 android:background="@color/white"
                 android:textColor="#484749"
                 android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:layout_marginBottom="32dp"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

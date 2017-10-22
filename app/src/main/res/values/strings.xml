@@ -7,7 +7,8 @@
     <string name="selectBirthday">Selecione a sua data de aniversário</string>
     <string name="name_logo_1">VET</string>
     <string name="name_logo_2">MOBILE</string>
-    <string name="name_user">Usuário</string>
+    <string name="type_pet">Pet</string>
+    <string name="breed_pet">Raça</string>
     <string name="name_email">E-mail</string>
     <string name="name_phone">Telefone</string>
     <string name="name_password">Senha</string>
@@ -17,5 +18,14 @@
     <string name="name_birthday">Nascimento</string>
     <string name="name_upload_photo">Minha Foto</string>
     <string name="name_continue">Continuar</string>
+    <string name="choose_image">Carregar Foto</string>
     <string name="wrongBirthdayDate">Algo errado. Selecione sua data de aniversário corretamente.</string>
+    <string name="errorFields">Preencha os campos corretamente.</string>
+    <string name="name_finish">Finalizar</string>
+    <string name="name_add_other">Adicionar Outro</string>
+    <string name="name_user">Usuário</string>
+    <string name="name_enter">Entrar</string>
+    <string name="name_register">Cadastrar</string>
+    <string name="name_vet">Veterinário(a)</string>
+    <string name="name_client">Cliente</string>
 </resources>
