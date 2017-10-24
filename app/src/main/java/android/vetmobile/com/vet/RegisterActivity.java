@@ -31,7 +31,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     private Button finishButton;
     private Button dateButton;
     private int datePickerDelay = 3000;
-    private String gender;
+    private String gender = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,47 +48,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         dateButton = findViewById(R.id.birthday_button_id);
         finishButton = findViewById(R.id.finish_button_id);
 
-        dateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createDatePicker();
-            }
-        });
-
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (!isValidLogin() || !isValidEmail() || !isValidPassword() || !isValidUserName()) {
-                    showMessageErrorFields();
-                    return;
-                }
-
-                Intent intent = new Intent(RegisterActivity.this, RegisterPetActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        femaleRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gender = "Feminino";
-                if (maleRadioButton.isChecked()) {
-                    maleRadioButton.setChecked(false);
-                }
-            }
-        });
-
-        maleRadioButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gender = "Masculino";
-                if (femaleRadioButton.isChecked()) {
-                    femaleRadioButton.setChecked(false);
-                }
-            }
-        });
-
+        addActionForMaleRadioButton();
+        addActionForFemaleRadioButton();
+        addActionForDateButton();
+        addActionForFinishButton();
         setOrientation();
         setPhoneNumber();
     }
@@ -125,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     public void createDatePicker() {
 
         Calendar now = Calendar.getInstance();
-        String datePickerTitle = getResources().getString(R.string.selectBirthday);
+        String datePickerTitle = getResources().getString(R.string.text_select_birthday);
 
         DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
                 RegisterActivity.this,
@@ -168,6 +131,15 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
     }
 
+    private void showMessageErrorNoGenderSelected() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorNoGenderSelected), Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean isValidGender() {
+        boolean isValid = !gender.isEmpty();
+        return isValid;
+    }
+
     private boolean isValidUserName() {
         return !nameEditText.getText().toString().isEmpty();
     }
@@ -197,4 +169,56 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         }
     }
 
+    private void addActionForMaleRadioButton() {
+        maleRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gender = "Masculino";
+                if (femaleRadioButton.isChecked()) {
+                    femaleRadioButton.setChecked(false);
+                }
+            }
+        });
+    }
+
+    private void addActionForFemaleRadioButton() {
+        femaleRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gender = "Feminino";
+                if (maleRadioButton.isChecked()) {
+                    maleRadioButton.setChecked(false);
+                }
+            }
+        });
+    }
+
+    private void addActionForDateButton() {
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDatePicker();
+            }
+        });
+    }
+
+    private void addActionForFinishButton() {
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!isValidLogin() || !isValidEmail() || !isValidPassword() || !isValidUserName()) {
+                    showMessageErrorFields();
+                    return;
+                }
+                if (!isValidGender()) {
+                    showMessageErrorNoGenderSelected();
+                    return;
+                }
+
+                Intent intent = new Intent(RegisterActivity.this, RegisterPetActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 }
