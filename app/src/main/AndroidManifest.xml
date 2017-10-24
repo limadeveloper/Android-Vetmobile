@@ -34,13 +34,13 @@
         </activity>
         <activity
             android:name=".RegisterActivity"
-            android:label=""
+            android:label="@string/name_client"
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
             android:name=".RegisterPetActivity"
-            android:label=""
+            android:label="@string/name_pet"
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
         </activity>

@@ -72,9 +72,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         femaleRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = "Feminino";
                 if (maleRadioButton.isChecked()) {
                     maleRadioButton.setChecked(false);
-                    gender = "Masculino";
                 }
             }
         });
@@ -82,9 +82,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         maleRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gender = "Masculino";
                 if (femaleRadioButton.isChecked()) {
                     femaleRadioButton.setChecked(false);
-                    gender = "Feminino";
                 }
             }
         });

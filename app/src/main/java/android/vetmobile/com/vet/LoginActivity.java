@@ -37,9 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         vetRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                typeUser = 1;
                 if (clientRadioButton.isChecked()) {
                     clientRadioButton.setChecked(false);
-                    typeUser = 1;
                 }
             }
         });
@@ -47,9 +47,9 @@ public class LoginActivity extends AppCompatActivity {
         clientRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                typeUser = 2;
                 if (vetRadioButton.isChecked()) {
                     vetRadioButton.setChecked(false);
-                    typeUser = 2;
                 }
             }
         });
@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (typeUser == 0 || !isValidLogin() || !isValidPassword()) {
+                if (!isValidLogin() || !isValidPassword()) {
                     showMessageErrorFields();
                     return;
                 }
@@ -67,8 +67,17 @@ public class LoginActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                switch (typeUser) {
+                    case 0:
+                        showMessageToSelectTypeUser();
+                        break;
+                    case 2:
+                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        break;
+                }
             }
         });
     }
@@ -83,6 +92,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showMessageErrorFields() {
         Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showMessageToSelectTypeUser() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.noTypeUserSelected), Toast.LENGTH_SHORT).show();
     }
 
     private boolean isValidLogin() {
