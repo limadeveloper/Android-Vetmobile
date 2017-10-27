@@ -18,14 +18,12 @@ public class LoginActivity extends AppCompatActivity {
     private Button registerButton;
     private RadioButton vetRadioButton;
     private RadioButton clientRadioButton;
-    private int typeUser = 0;
+    private String typeUser = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        setOrientation();
 
         loginEditText = findViewById(R.id.login_edittext_id);
         passwordEditText = findViewById(R.id.password_edittext_id);
@@ -34,26 +32,40 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login_button_id);
         registerButton = findViewById(R.id.register_button_id);
 
+        typeUser = getResources().getText(R.string.const_typeUserNone).toString();
+
+        addActionForVetRadioButton();
+        addActionForClientRadioButton();
+        addActionForLoginButton();
+        addActionForRegisterButton();
+        setOrientation();
+    }
+
+    private void addActionForVetRadioButton() {
         vetRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                typeUser = 1;
+                typeUser = getResources().getText(R.string.const_typeUserVet).toString();
                 if (clientRadioButton.isChecked()) {
                     clientRadioButton.setChecked(false);
                 }
             }
         });
+    }
 
+    private void addActionForClientRadioButton() {
         clientRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                typeUser = 2;
+                typeUser = getResources().getText(R.string.const_typeUserClient).toString();
                 if (vetRadioButton.isChecked()) {
                     vetRadioButton.setChecked(false);
                 }
             }
         });
+    }
 
+    private void addActionForLoginButton() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,20 +75,18 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void addActionForRegisterButton() {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (typeUser) {
-                    case 0:
-                        showMessageToSelectTypeUser();
-                        break;
-                    case 2:
-                        Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        break;
+                if (typeUser.equals(getResources().getText(R.string.const_typeUserNone).toString())) {
+                    showMessageToSelectTypeUser();
+                }else if (typeUser.equals(getResources().getText(R.string.const_typeUserClient).toString())) {
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    intent.putExtra(getResources().getText(R.string.key_typeUser).toString(), typeUser);
+                    startActivity(intent);
                 }
             }
         });

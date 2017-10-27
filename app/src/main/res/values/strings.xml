@@ -35,4 +35,10 @@
     <string name="text_female">F</string>
     <string name="text_select_birthday">Data de adoção ou nascimento:</string>
     <string name="errorNoGenderSelected">Para prosseguir, selecione o sexo.</string>
+    <string name="const_male">Masculino</string>
+    <string name="const_female">Feminino</string>
+    <string name="const_typeUserNone">0</string>
+    <string name="const_typeUserVet">1</string>
+    <string name="const_typeUserClient">2</string>
+    <string name="key_typeUser">TypeUser</string>
 </resources>

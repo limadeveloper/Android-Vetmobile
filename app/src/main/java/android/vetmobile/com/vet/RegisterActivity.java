@@ -32,6 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     private Button dateButton;
     private int datePickerDelay = 3000;
     private String gender = "";
+    private String typeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         addActionForFinishButton();
         setOrientation();
         setPhoneNumber();
+        setTypeUserValue();
     }
 
     @Override
@@ -169,11 +171,15 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         }
     }
 
+    private void setTypeUserValue() {
+        typeUser = getIntent().getExtras().getString(getResources().getText(R.string.key_typeUser).toString());
+    }
+
     private void addActionForMaleRadioButton() {
         maleRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gender = "Masculino";
+                gender = getResources().getText(R.string.const_male).toString();
                 if (femaleRadioButton.isChecked()) {
                     femaleRadioButton.setChecked(false);
                 }
@@ -185,7 +191,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         femaleRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gender = "Feminino";
+                gender = getResources().getText(R.string.const_female).toString();
                 if (maleRadioButton.isChecked()) {
                     maleRadioButton.setChecked(false);
                 }
