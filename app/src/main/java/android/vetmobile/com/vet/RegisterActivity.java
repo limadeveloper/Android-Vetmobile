@@ -222,8 +222,13 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                     return;
                 }
 
-                Intent intent = new Intent(RegisterActivity.this, RegisterPetActivity.class);
-                startActivity(intent);
+                if (typeUser.equals(getResources().getText(R.string.const_typeUserVet).toString())) {
+                    Intent intent = new Intent(RegisterActivity.this, RegisterMoreInfoVetActivity.class);
+                    startActivity(intent);
+                }else if (typeUser.equals(getResources().getText(R.string.const_typeUserClient).toString())) {
+                    Intent intent = new Intent(RegisterActivity.this, RegisterPetActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

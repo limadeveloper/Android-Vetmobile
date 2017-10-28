@@ -230,7 +230,7 @@
                 android:layout_marginTop="44dp"
                 android:text="@string/text_continue"
                 android:background="@color/white"
-                android:textColor="#484749"
+                android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="32dp"/>

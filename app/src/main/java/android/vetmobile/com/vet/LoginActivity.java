@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (typeUser.equals(getResources().getText(R.string.const_typeUserNone).toString())) {
                     showMessageToSelectTypeUser();
-                }else if (typeUser.equals(getResources().getText(R.string.const_typeUserClient).toString())) {
+                }else if (typeUser.equals(getResources().getText(R.string.const_typeUserVet).toString()) || typeUser.equals(getResources().getText(R.string.const_typeUserClient).toString())) {
                     Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                     intent.putExtra(getResources().getText(R.string.key_typeUser).toString(), typeUser);
                     startActivity(intent);

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="android.vetmobile.com.vet">
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -41,6 +43,12 @@
         <activity
             android:name=".RegisterPetActivity"
             android:label="@string/text_pet"
+            android:theme="@style/AppCompat.FullScreen"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+            android:name=".RegisterMoreInfoVetActivity"
+            android:label=""
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
         </activity>

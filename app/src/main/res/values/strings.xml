@@ -41,4 +41,12 @@
     <string name="const_typeUserVet">1</string>
     <string name="const_typeUserClient">2</string>
     <string name="key_typeUser">TypeUser</string>
+    <string name="text_address">Endereço</string>
+    <string name="text_address_number">Nº</string>
+    <string name="text_neighborhood">Bairro</string>
+    <string name="text_city">Cidade</string>
+    <string name="text_uf">UF</string>
+    <string name="text_cep">CEP</string>
+    <string name="text_crv">CRV</string>
+    <string name="text_domain_area">Especialidade</string>
 </resources>
