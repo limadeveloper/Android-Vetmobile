@@ -52,6 +52,12 @@
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
         </activity>
+        <activity
+            android:name=".HomeClientActivity"
+            android:label=""
+            android:theme="@style/AppCompat.FullScreen"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package android.vetmobile.com.vet;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -47,7 +48,8 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
                     showMessageErrorFields();
                     return;
                 }
-                // Go to home
+                Intent intent = new Intent(RegisterMoreInfoVetActivity.this, HomeClientActivity.class);
+                startActivity(intent);
             }
         });
     }
