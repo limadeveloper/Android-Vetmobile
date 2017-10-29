@@ -71,7 +71,7 @@
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:hint="@string/text_name"/>
+                    android:hint="@string/text_pet_name"/>
             </LinearLayout>
 
             <LinearLayout

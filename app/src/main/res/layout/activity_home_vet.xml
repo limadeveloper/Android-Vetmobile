@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="android.vetmobile.com.vet.HomeClientActivity">
+    tools:context="android.vetmobile.com.vet.HomeVetActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -48,7 +48,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/calendar"
-                    android:layout_margin="16dp"/>
+                    android:layout_margin="16dp"
+                    android:contentDescription="" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -57,13 +58,14 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/text_mark"
+                        android:text="@string/text_nexts"
                         android:textAllCaps="true"
                         android:textSize="36sp"
                         android:textStyle="bold"
@@ -74,9 +76,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/text_assistance"
+                        android:text="@string/text_assistances"
                         android:textAllCaps="true"
-                        android:textSize="22sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         android:textColor="#393765"
                         android:textAlignment="center"/>
@@ -100,15 +102,16 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/text_mine1"
+                        android:text="@string/text_mine2"
                         android:textAllCaps="true"
-                        android:textSize="36sp"
+                        android:textSize="38sp"
                         android:textStyle="bold"
                         android:textColor="#6D0072"
                         android:textAlignment="center"/>
@@ -117,7 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/text_enquiries"
+                        android:text="@string/text_reports"
                         android:textAllCaps="true"
                         android:textSize="24sp"
                         android:textStyle="bold"
@@ -130,7 +133,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/list"
-                    android:layout_margin="16dp"/>
+                    android:layout_margin="16dp"
+                    android:contentDescription="" />
 
             </LinearLayout>
 
@@ -146,7 +150,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/lamp"
-                    android:layout_margin="16dp"/>
+                    android:layout_margin="16dp"
+                    android:contentDescription="" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -155,15 +160,16 @@
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginEnd="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/text_tips"
+                        android:text="@string/text_mine3"
                         android:textAllCaps="true"
-                        android:textSize="36sp"
+                        android:textSize="38sp"
                         android:textStyle="bold"
                         android:textColor="#FFFFAC"
                         android:textAlignment="center"/>
@@ -172,9 +178,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="@string/text_pets"
+                        android:text="@string/text_availability"
                         android:textAllCaps="true"
-                        android:textSize="26sp"
+                        android:textSize="22sp"
                         android:textStyle="bold"
                         android:textColor="#FFFFAC"
                         android:textAlignment="center"/>
@@ -198,7 +204,8 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginBottom="16dp"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -228,7 +235,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/settings"
-                    android:layout_margin="16dp"/>
+                    android:layout_margin="16dp"
+                    android:contentDescription="" />
 
             </LinearLayout>
 

@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
 
-public class HomeClientActivity extends AppCompatActivity {
+public class HomeVetActivity extends AppCompatActivity {
 
     private LinearLayout listItem1;
     private LinearLayout listItem2;
@@ -16,7 +16,7 @@ public class HomeClientActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_client);
+        setContentView(R.layout.activity_home_vet);
 
         listItem1 = findViewById(R.id.item1_list_id);
         listItem2 = findViewById(R.id.item2_list_id);

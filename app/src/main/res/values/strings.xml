@@ -51,10 +51,18 @@
     <string name="text_domain_area">Especialidade</string>
     <string name="text_mark">Marcar</string>
     <string name="text_assistance">Atendimento</string>
-    <string name="text_mine">Minhas</string>
+    <string name="text_assistances">Atendimentos</string>
+    <string name="text_mine1">Minhas</string>
+    <string name="text_mine2">Meus</string>
+    <string name="text_mine3">Minha</string>
+    <string name="text_mine4">Meu</string>
     <string name="text_enquiries">Consultas</string>
     <string name="text_tips">Dicas</string>
     <string name="text_pets">Pets</string>
     <string name="text_my_data">Meus Dados</string>
     <string name="text_land_registry">Cadastrais</string>
+    <string name="text_nexts">Próximos</string>
+    <string name="text_reports">Relatórios</string>
+    <string name="text_availability">Disponibilidade</string>
+    <string name="text_pet_name">Nome do Pet</string>
 </resources>

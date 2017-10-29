@@ -48,7 +48,7 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
                     showMessageErrorFields();
                     return;
                 }
-                Intent intent = new Intent(RegisterMoreInfoVetActivity.this, HomeClientActivity.class);
+                Intent intent = new Intent(RegisterMoreInfoVetActivity.this, HomeVetActivity.class);
                 startActivity(intent);
             }
         });
