@@ -49,4 +49,12 @@
     <string name="text_cep">CEP</string>
     <string name="text_crv">CRV</string>
     <string name="text_domain_area">Especialidade</string>
+    <string name="text_mark">Marcar</string>
+    <string name="text_assistance">Atendimento</string>
+    <string name="text_mine">Minhas</string>
+    <string name="text_enquiries">Consultas</string>
+    <string name="text_tips">Dicas</string>
+    <string name="text_pets">Pets</string>
+    <string name="text_my_data">Meus Dados</string>
+    <string name="text_land_registry">Cadastrais</string>
 </resources>

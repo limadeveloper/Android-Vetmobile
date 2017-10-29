@@ -5,4 +5,8 @@
     <color name="colorAccent">#5EC5B8</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="earlsGreen">#BEAE1F</color>
+    <color name="lightBrown">#B56215</color>
+    <color name="venetianRed">#6C050F</color>
+    <color name="flirt">#96007B</color>
 </resources>

@@ -57,7 +57,7 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         maleRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gender = "Masculino";
+                gender = getResources().getText(R.string.const_male).toString();
                 if (femaleRadioButton.isChecked()) {
                     femaleRadioButton.setChecked(false);
                 }
@@ -69,7 +69,7 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         femaleRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gender = "Feminino";
+                gender = getResources().getText(R.string.const_female).toString();
                 if (maleRadioButton.isChecked()) {
                     maleRadioButton.setChecked(false);
                 }
@@ -81,7 +81,6 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (!isValidName() || !isValidKind()) {
                     showMessageErrorFields();
                     return;
