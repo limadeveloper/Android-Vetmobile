@@ -100,7 +100,7 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
                     showMessageErrorNoGenderSelected();
                     return;
                 }
-                if (!hasImage) {
+                if (!hasImage && !Support.isEmulator()) {
                     showMessageErrorImageNotSelected();
                     return;
                 }
@@ -193,7 +193,7 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
     public void createDatePicker() {
 
         Calendar now = Calendar.getInstance();
-        String datePickerTitle = getResources().getString(R.string.selectBirthday);
+        String datePickerTitle = getResources().getString(R.string.text_select_birthday);
 
         DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(
                 RegisterPetActivity.this,
@@ -255,7 +255,9 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
             cursor.close();
 
             Bitmap bitmap = Support.getScaledBitmap(picturePath, 800, 800);
+
             selectedPetImage = bitmap;
+            hasImage = selectedPetImage != null;
         }
     }
 }
