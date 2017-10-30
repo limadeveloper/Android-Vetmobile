@@ -1,8 +1,13 @@
 package android.vetmobile.com.vet;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +35,9 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
     private Button addAnotherButton;
     private Button finishButton;
     private int datePickerDelay = 3000;
+    private boolean hasImage = false;
+    private int RESULT_LOAD_IMAGE = 1;
+    private Bitmap selectedPetImage = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,8 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         addActionForMaleRadioButton();
         addActionForFemaleRadioButton();
         addActionForBirthdayButton();
+        addActionForLoadPhotoButton();
+        addActionForAddAnotherButton();
         addActionForFinishButton();
         setOrientation();
     }
@@ -81,6 +91,7 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!isValidName() || !isValidKind()) {
                     showMessageErrorFields();
                     return;
@@ -89,6 +100,13 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
                     showMessageErrorNoGenderSelected();
                     return;
                 }
+                if (!hasImage) {
+                    showMessageErrorImageNotSelected();
+                    return;
+                }
+
+                Intent intent = new Intent(RegisterPetActivity.this, HomeClientActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -102,8 +120,28 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         });
     }
 
+    private void addActionForLoadPhotoButton() {
+        loadFotoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(i, RESULT_LOAD_IMAGE);
+            }
+        });
+    }
+
+    private void addActionForAddAnotherButton() {
+        addAnotherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RegisterPetActivity.this, RegisterPetActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
     private void setOrientation() {
-        if (DeviceSettings.isTablet(getWindowManager())) {
+        if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -131,6 +169,10 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
 
     private void showMessageErrorFields() {
         Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showMessageErrorImageNotSelected() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_select_pet_photo), Toast.LENGTH_SHORT).show();
     }
 
     private void showMessageErrorAboutWrongBirthdayDate() {
@@ -196,4 +238,24 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data != null) {
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            Bitmap bitmap = Support.getScaledBitmap(picturePath, 800, 800);
+            selectedPetImage = bitmap;
+        }
+    }
 }

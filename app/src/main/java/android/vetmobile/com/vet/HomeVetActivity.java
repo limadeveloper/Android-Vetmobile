@@ -31,7 +31,7 @@ public class HomeVetActivity extends AppCompatActivity {
     }
 
     private void setOrientation() {
-        if (DeviceSettings.isTablet(getWindowManager())) {
+        if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

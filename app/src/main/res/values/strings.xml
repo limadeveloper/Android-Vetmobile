@@ -65,4 +65,5 @@
     <string name="text_reports">Relatórios</string>
     <string name="text_availability">Disponibilidade</string>
     <string name="text_pet_name">Nome do Pet</string>
+    <string name="text_select_pet_photo">Para continuar, selecione uma imagem do Pet.</string>
 </resources>

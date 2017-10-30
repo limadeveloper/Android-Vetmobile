@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
     private void setOrientation() {
-        if (DeviceSettings.isTablet(getWindowManager())) {
+        if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -164,9 +164,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
     private void setPhoneNumber() {
-        boolean isEmulator = DeviceSettings.isEmulator();
+        boolean isEmulator = Support.isEmulator();
         if (!isEmulator) {
-            String number = DeviceSettings.getPhoneNumber(getApplicationContext()).toString();
+            String number = Support.getPhoneNumber(getApplicationContext()).toString();
             phoneEditText.setText(number);
         }
     }
