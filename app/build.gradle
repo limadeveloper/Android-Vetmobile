@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
 
 allprojects {
     repositories {
@@ -7,6 +8,19 @@ allprojects {
             url "https://maven.google.com"
         }
     }
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "io.realm:realm-gradle-plugin:4.1.1"
+    }
+}
+
+realm {
+    syncEnabled = true;
 }
 
 android {
