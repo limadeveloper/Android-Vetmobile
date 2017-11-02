@@ -35,9 +35,12 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
     private Button addAnotherButton;
     private Button finishButton;
     private int datePickerDelay = 3000;
+    private int delayToContinue = 2000;
     private boolean hasImage = false;
     private int RESULT_LOAD_IMAGE = 1;
     private Bitmap selectedPetImage = null;
+    private String currentUserLogin;
+    private User currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,9 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         addActionForLoadPhotoButton();
         addActionForAddAnotherButton();
         addActionForFinishButton();
+
         setOrientation();
+        setCurrentUserLogin();
     }
 
     private void addActionForMaleRadioButton() {
@@ -92,21 +97,48 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View v) {
 
+                // Validação dos dados
                 if (!isValidName() || !isValidKind()) {
                     showMessageErrorFields();
                     return;
                 }
+
                 if (!isValidGender()) {
                     showMessageErrorNoGenderSelected();
                     return;
                 }
+
                 if (!hasImage && !Support.isEmulator()) {
                     showMessageErrorImageNotSelected();
                     return;
                 }
 
-                Intent intent = new Intent(RegisterPetActivity.this, HomeClientActivity.class);
-                startActivity(intent);
+                if (currentUser == null) {
+                    DBManager.showMessageErrorEntityNull(getApplicationContext());
+                    return;
+                }
+
+                // Salva os dados no banco
+                boolean saved = savePet();
+
+                if (!saved) {
+                    showMessageSavePetError();
+                    return;
+                }
+
+                showMessageSavePetSuccessful();
+
+                // Cria um delay para para prosseguir para a próxima tela
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(RegisterPetActivity.this, HomeClientActivity.class);
+                        intent.putExtra(getResources().getString(R.string.key_current_user), currentUserLogin);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                }, delayToContinue);
             }
         });
     }
@@ -135,7 +167,9 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterPetActivity.this, RegisterPetActivity.class);
+                intent.putExtra(getResources().getString(R.string.key_current_user), currentUserLogin);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -148,6 +182,11 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         }
     }
 
+    private void setCurrentUserLogin() {
+        currentUserLogin = getIntent().getExtras().getString(getResources().getString(R.string.key_current_user));
+        currentUser = User.getUserBy(currentUserLogin);
+    }
+
     private boolean isValidName() {
         boolean isValid = !nameEditText.getText().toString().isEmpty();
         return isValid;
@@ -158,13 +197,13 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         return isValid;
     }
 
-    private void showMessageErrorNoGenderSelected() {
-        Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorNoGenderSelected), Toast.LENGTH_SHORT).show();
-    }
-
     private boolean isValidGender() {
         boolean isValid = !gender.isEmpty();
         return isValid;
+    }
+
+    private void showMessageErrorNoGenderSelected() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorNoGenderSelected), Toast.LENGTH_SHORT).show();
     }
 
     private void showMessageErrorFields() {
@@ -177,6 +216,32 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
 
     private void showMessageErrorAboutWrongBirthdayDate() {
         Toast.makeText(getApplicationContext(), getResources().getText(R.string.wrongBirthdayDate), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showMessageSavePetSuccessful() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_save_pet_successful), Toast.LENGTH_LONG).show();
+    }
+
+    private void showMessageSavePetError() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_database_try_saving_object_null), Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean savePet() {
+
+        Pet pet = new Pet(
+                nameEditText.getText().toString(),
+                kindEditText.getText().toString(),
+                breedEditText.getText().toString(),
+                gender,
+                currentUser,
+                Support.getBytesFromImage(selectedPetImage)
+        );
+
+        Pet.insertOrUpdateData(getApplicationContext(), pet);
+
+        boolean status = Pet.getPetBy(pet.getId()) != null;
+
+        return status;
     }
 
     public void createDatePickerWithDelay(int timer) {
@@ -260,4 +325,5 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
             hasImage = selectedPetImage != null;
         }
     }
+
 }

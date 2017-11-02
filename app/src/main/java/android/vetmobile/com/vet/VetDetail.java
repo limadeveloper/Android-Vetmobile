@@ -4,6 +4,6 @@
 
 package android.vetmobile.com.vet;
 
-public class Vet {
+public class VetDetail {
 
 }
