@@ -22,6 +22,7 @@ import java.util.Date;
 public class RegisterActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private EditText nameEditText;
+    private EditText userEditText;
     private EditText emailEditText;
     private EditText phoneEditText;
     private EditText passwordEditText;
@@ -40,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         setContentView(R.layout.activity_register);
 
         nameEditText = findViewById(R.id.name_edittext_id);
+        userEditText = findViewById(R.id.user_edittext_id);
         emailEditText = findViewById(R.id.email_edittext_id);
         phoneEditText = findViewById(R.id.phone_edittext_id);
         passwordEditText = findViewById(R.id.password_edittext_id);
@@ -53,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         addActionForFemaleRadioButton();
         addActionForDateButton();
         addActionForFinishButton();
+
         setOrientation();
         setPhoneNumber();
         setTypeUserValue();
@@ -146,6 +149,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         return !nameEditText.getText().toString().isEmpty();
     }
 
+    private boolean isValidUser() {
+        return !userEditText.getText().toString().isEmpty();
+    }
+
     private boolean isValidLogin() {
         return true;
     }
@@ -173,6 +180,24 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
     private void setTypeUserValue() {
         typeUser = getIntent().getExtras().getString(getResources().getText(R.string.key_typeUser).toString());
+    }
+
+    private boolean saveClient() {
+
+        Client client = new Client(
+                1,
+                nameEditText.getText().toString(),
+                userEditText.getText().toString(),
+                emailEditText.getText().toString(),
+                phoneEditText.getText().toString(),
+                passwordEditText.getText().toString(),
+                dateButton.getText().toString(),
+                gender
+        );
+
+        DBManager.insertOrUpdateData(DBManager.EntitiesEnum.CLIENT, getApplicationContext(), client);
+
+        return true;
     }
 
     private void addActionForMaleRadioButton() {
@@ -226,6 +251,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                     Intent intent = new Intent(RegisterActivity.this, RegisterMoreInfoVetActivity.class);
                     startActivity(intent);
                 }else if (typeUser.equals(getResources().getText(R.string.const_typeUserClient).toString())) {
+                    boolean saved = saveClient();
+                    if (saved) {
+                        return;
+                    }
                     Intent intent = new Intent(RegisterActivity.this, RegisterPetActivity.class);
                     startActivity(intent);
                 }

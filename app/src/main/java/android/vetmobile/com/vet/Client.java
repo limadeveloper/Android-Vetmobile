@@ -1,5 +1,5 @@
 /**
- * Created by limadeveloper on 31/10/17.
+ * Created by limadeveloper on 02/11/17.
  */
 
 package android.vetmobile.com.vet;
@@ -7,22 +7,24 @@ package android.vetmobile.com.vet;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class User extends RealmObject {
+public class Client extends RealmObject {
 
     @PrimaryKey
     private int id;
     private String name;
+    private String login;
     private String email;
     private String phone;
     private String password;
     private String birthday;
     private String gender;
 
-    public User() {}
+    public Client() {}
 
-    public User(int id, String name, String email, String phone, String password, String birthday, String gender) {
+    public Client(int id, String name, String login, String email, String phone, String password, String birthday, String gender) {
         this.id = id;
         this.name = name;
+        this.login = login;
         this.email = email;
         this.phone = phone;
         this.password = password;
@@ -34,6 +36,8 @@ public class User extends RealmObject {
     public void setId(int id) { this.id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+    public String getLogin() { return login; }
+    public void setLogin(String login) { this.login = login; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getPhone() { return phone; }

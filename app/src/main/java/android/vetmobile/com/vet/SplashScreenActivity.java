@@ -22,6 +22,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startInitialActivity();
             }
         }, time);
+
+        // Mostra o path do banco de dados
+        DBManager.showRealmPath(getApplicationContext());
     }
 
     private void startInitialActivity() {
