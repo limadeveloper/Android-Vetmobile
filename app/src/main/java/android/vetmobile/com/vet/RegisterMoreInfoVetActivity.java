@@ -3,6 +3,7 @@ package android.vetmobile.com.vet;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,9 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
     private EditText crvEditText;
     private EditText domainAreaEditText;
     private Button finishButton;
+    private String currentUserLogin;
+    private User currentUser = null;
+    private int delayToContinue = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,18 +42,41 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
 
         addActionForFinishButton();
         setOrientation();
+        setCurrentUserLogin();
     }
 
     private void addActionForFinishButton() {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Validação dos dados
                 if (!validateFields()) {
                     showMessageErrorFields();
                     return;
                 }
-                Intent intent = new Intent(RegisterMoreInfoVetActivity.this, HomeVetActivity.class);
-                startActivity(intent);
+
+                // Salva os dados no banco
+                boolean saved = saveData();
+
+                if (!saved) {
+                    showMessageSaveDataError();
+                    return;
+                }
+
+                showMessageSaveDataSuccessful();
+
+                // Cria um delay para para prosseguir para a próxima tela
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(RegisterMoreInfoVetActivity.this, HomeVetActivity.class);
+                        intent.putExtra(getResources().getString(R.string.key_current_user), currentUserLogin);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                }, delayToContinue);
             }
         });
     }
@@ -103,6 +130,14 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
     }
 
+    private void showMessageSaveDataSuccessful() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_save_data_successful), Toast.LENGTH_LONG).show();
+    }
+
+    private void showMessageSaveDataError() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_database_try_saving_object_null), Toast.LENGTH_SHORT).show();
+    }
+
     private void setOrientation() {
         if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -110,4 +145,31 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
+
+    private void setCurrentUserLogin() {
+        currentUserLogin = getIntent().getExtras().getString(getResources().getString(R.string.key_current_user));
+        currentUser = User.getUserBy(currentUserLogin);
+    }
+
+    private boolean saveData() {
+
+        VetDetail vetDetail = new VetDetail(
+                addressEditText.getText().toString(),
+                addressNumberEditText.getText().toString(),
+                neighborhoodEditText.getText().toString(),
+                cityEditText.getText().toString(),
+                ufCityEditText.getText().toString(),
+                cepCityEditText.getText().toString(),
+                crvEditText.getText().toString(),
+                domainAreaEditText.getText().toString(),
+                currentUser
+        );
+
+        VetDetail.insertOrUpdateData(getApplicationContext(), vetDetail);
+
+        boolean status = VetDetail.getVetDetailBy(vetDetail.getId()) != null;
+
+        return status;
+    }
+
 }

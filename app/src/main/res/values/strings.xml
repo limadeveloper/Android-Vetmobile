@@ -73,5 +73,8 @@
     <string name="text_const_type_user_client">CLIENT</string>
     <string name="text_save_user_successful">Usuário salvo com sucesso</string>
     <string name="text_save_pet_successful">Animal salvo com sucesso</string>
+    <string name="text_save_data_successful">Dados salvo com sucesso</string>
     <string name="text_user_login_error">Usuário inválido ou indisponível. Escolha outro</string>
+    <string name="text_wrong_user_login">Usuário inválido</string>
+    <string name="text_wrong_user_password">Senha inválida</string>
 </resources>

@@ -308,7 +308,6 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
                 }
 
                 showMessageSaveUserSuccessful();
-                clearFields();
 
                 // Cria um delay para para prosseguir para a próxima tela
                 Handler handler = new Handler();

@@ -31,4 +31,10 @@ public class DBManager {
         Toast.makeText(context, "realm path: "+ realm.getPath(), Toast.LENGTH_LONG).show();
         Log.d("", "realm path: "+ realm.getPath());
     }
+
+    public static void deleteAll() {
+        Pet.deleteAllData();
+        VetDetail.deleteAllData();
+        User.deleteAllData();
+    }
 }

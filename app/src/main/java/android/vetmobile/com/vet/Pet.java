@@ -29,13 +29,12 @@ public class Pet extends RealmObject {
 
     public Pet() {}
 
-    public Pet(String name, String kind, String breed, String gender, User user, byte[] photoBytes) {
+    public Pet(String name, String kind, String breed, String gender, User user) {
         this.name = name;
         this.kind = kind;
         this.breed = breed;
         this.gender = gender;
         this.user = user;
-        this.photoBytes = photoBytes;
     }
 
     public int getId() {return id;}

@@ -5,6 +5,7 @@
 package android.vetmobile.com.vet;
 
 import android.content.Context;
+import android.content.Intent;
 
 import io.realm.Realm;
 import io.realm.RealmObject;
@@ -159,6 +160,13 @@ public class User extends RealmObject {
                 realm.close();
             }
         }
+    }
+
+    public static void logout(User user, Context context) {
+        updateStatusLogged(false, user.login);
+        Intent intent = new Intent(context, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        context.startActivity(intent);
     }
 
     public enum TypeUserEnum {

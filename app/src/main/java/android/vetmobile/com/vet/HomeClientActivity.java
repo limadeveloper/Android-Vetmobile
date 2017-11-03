@@ -1,5 +1,6 @@
 package android.vetmobile.com.vet;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +13,7 @@ public class HomeClientActivity extends AppCompatActivity {
     private LinearLayout listItem2;
     private LinearLayout listItem3;
     private LinearLayout listItem4;
-    private String currentUserLogin;
+    private String currentUserLogin = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +79,13 @@ public class HomeClientActivity extends AppCompatActivity {
     }
 
     private void setCurrentUserLogin() {
-        currentUserLogin = getIntent().getExtras().getString(getResources().getString(R.string.key_current_user));
-        User.updateStatusLogged(true, currentUserLogin);
+        Intent intent = this.getIntent();
+        Bundle extras = intent.getExtras();
+        if (intent != null && extras != null) {
+            currentUserLogin = intent.getStringExtra(getResources().getString(R.string.key_current_user));
+            if (currentUserLogin == null) {return;}
+            User.updateStatusLogged(true, currentUserLogin);
+        }
     }
 
 }

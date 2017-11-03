@@ -32,7 +32,6 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
     private String gender = "";
     private Button birthdayButton;
     private Button loadFotoButton;
-    private Button addAnotherButton;
     private Button finishButton;
     private int datePickerDelay = 3000;
     private int delayToContinue = 2000;
@@ -54,14 +53,12 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         femaleRadioButton = findViewById(R.id.female_radiobutton_id);
         birthdayButton = findViewById(R.id.selectdate_button_id);
         loadFotoButton = findViewById(R.id.chooseimage_button_id);
-        addAnotherButton = findViewById(R.id.addmore_button_id);
         finishButton = findViewById(R.id.finish_button_id);
 
         addActionForMaleRadioButton();
         addActionForFemaleRadioButton();
         addActionForBirthdayButton();
         addActionForLoadPhotoButton();
-        addActionForAddAnotherButton();
         addActionForFinishButton();
 
         setOrientation();
@@ -162,18 +159,6 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
         });
     }
 
-    private void addActionForAddAnotherButton() {
-        addAnotherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(RegisterPetActivity.this, RegisterPetActivity.class);
-                intent.putExtra(getResources().getString(R.string.key_current_user), currentUserLogin);
-                startActivity(intent);
-                finish();
-            }
-        });
-    }
-
     private void setOrientation() {
         if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -233,9 +218,12 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
                 kindEditText.getText().toString(),
                 breedEditText.getText().toString(),
                 gender,
-                currentUser,
-                Support.getBytesFromImage(selectedPetImage)
+                currentUser
         );
+
+        if (selectedPetImage != null) {
+            pet.setPhotoBytes(Support.getBytesFromImage(selectedPetImage));
+        }
 
         Pet.insertOrUpdateData(getApplicationContext(), pet);
 
