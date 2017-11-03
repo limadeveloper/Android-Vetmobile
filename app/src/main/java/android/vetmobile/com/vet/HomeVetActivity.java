@@ -1,5 +1,6 @@
 package android.vetmobile.com.vet;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ public class HomeVetActivity extends AppCompatActivity {
     private LinearLayout listItem2;
     private LinearLayout listItem3;
     private LinearLayout listItem4;
+    private String currentUserLogin = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +29,13 @@ public class HomeVetActivity extends AppCompatActivity {
         addActionForListItem2();
         addActionForListItem3();
         addActionForListItem4();
+
         setOrientation();
+        setCurrentUserLogin();
     }
 
     private void setOrientation() {
-        if (DeviceSettings.isTablet(getWindowManager())) {
+        if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -72,6 +76,16 @@ public class HomeVetActivity extends AppCompatActivity {
                 // Do something here
             }
         });
+    }
+
+    private void setCurrentUserLogin() {
+        Intent intent = this.getIntent();
+        Bundle extras = intent.getExtras();
+        if (intent != null && extras != null) {
+            currentUserLogin = intent.getStringExtra(getResources().getString(R.string.key_current_user));
+            if (currentUserLogin == null) {return;}
+            User.updateStatusLogged(true, currentUserLogin);
+        }
     }
 
 }

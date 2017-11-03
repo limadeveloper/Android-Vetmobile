@@ -22,11 +22,31 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startInitialActivity();
             }
         }, time);
+
+        // Mostra o path do banco de dados
+        if (!Support.isEmulator()) { return; }
+        DBManager.showRealmPath(getApplicationContext());
     }
 
     private void startInitialActivity() {
-        Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+
+        User user = User.getLoggedUser();
+
+        if (user != null) {
+            User.TypeUserEnum type = User.getTypeUserEnum(getApplicationContext(), user);
+            if (type == User.TypeUserEnum.VET) {
+                Intent intent = new Intent(SplashScreenActivity.this, HomeVetActivity.class);
+                startActivity(intent);
+                finish();
+            }else if (type == User.TypeUserEnum.CLIENT) {
+                Intent intent = new Intent(SplashScreenActivity.this, HomeClientActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }else {
+            Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

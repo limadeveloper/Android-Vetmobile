@@ -40,7 +40,8 @@
     <string name="const_typeUserNone">0</string>
     <string name="const_typeUserVet">1</string>
     <string name="const_typeUserClient">2</string>
-    <string name="key_typeUser">TypeUser</string>
+    <string name="key_typeUser">KEY_TYPE_USER</string>
+    <string name="key_current_user">KEY_CURRENT_USER</string>
     <string name="text_address">Endereço</string>
     <string name="text_address_number">Nº</string>
     <string name="text_neighborhood">Bairro</string>
@@ -65,4 +66,15 @@
     <string name="text_reports">Relatórios</string>
     <string name="text_availability">Disponibilidade</string>
     <string name="text_pet_name">Nome do Pet</string>
+    <string name="text_select_pet_photo">Para continuar, selecione uma imagem do Pet.</string>
+    <string name="text_database_try_saving_object_null">Não foi possível salvar os dados</string>
+    <string name="text_internal_error">Erro interno - 01</string>
+    <string name="text_const_type_user_vet">VET</string>
+    <string name="text_const_type_user_client">CLIENT</string>
+    <string name="text_save_user_successful">Usuário salvo com sucesso</string>
+    <string name="text_save_pet_successful">Animal salvo com sucesso</string>
+    <string name="text_save_data_successful">Dados salvo com sucesso</string>
+    <string name="text_user_login_error">Usuário inválido ou indisponível. Escolha outro</string>
+    <string name="text_wrong_user_login">Usuário inválido</string>
+    <string name="text_wrong_user_password">Senha inválida</string>
 </resources>

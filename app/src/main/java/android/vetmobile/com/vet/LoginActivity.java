@@ -19,6 +19,7 @@ public class LoginActivity extends AppCompatActivity {
     private RadioButton vetRadioButton;
     private RadioButton clientRadioButton;
     private String typeUser = "";
+    private User currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         addActionForClientRadioButton();
         addActionForLoginButton();
         addActionForRegisterButton();
+
         setOrientation();
     }
 
@@ -69,9 +71,34 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isValidLogin() || !isValidPassword()) {
-                    showMessageErrorFields();
+
+                if (!isValidLogin()) {
+                    showMessageWrongUserLogin();
                     return;
+                }
+
+                if (!isValidPassword()) {
+                    showMessageWrongUserPassword();
+                    return;
+                }
+
+                if (currentUser == null) {
+                    DBManager.showMessageErrorEntityNull(getApplicationContext());
+                    return;
+                }
+
+                User.TypeUserEnum type = User.getTypeUserEnum(getApplicationContext(), currentUser);
+
+                if (type == User.TypeUserEnum.VET) {
+                    Intent intent = new Intent(LoginActivity.this, HomeVetActivity.class);
+                    intent.putExtra(getResources().getString(R.string.key_current_user), currentUser.getLogin());
+                    startActivity(intent);
+                    finish();
+                }else if (type == User.TypeUserEnum.CLIENT) {
+                    Intent intent = new Intent(LoginActivity.this, HomeClientActivity.class);
+                    intent.putExtra(getResources().getString(R.string.key_current_user), currentUser.getLogin());
+                    startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -93,15 +120,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setOrientation() {
-        if (DeviceSettings.isTablet(getWindowManager())) {
+        if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }else{
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
     }
 
-    private void showMessageErrorFields() {
-        Toast.makeText(getApplicationContext(), getResources().getText(R.string.errorFields), Toast.LENGTH_SHORT).show();
+    private void showMessageWrongUserLogin() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_wrong_user_login), Toast.LENGTH_LONG).show();
+    }
+
+    private void showMessageWrongUserPassword() {
+        Toast.makeText(getApplicationContext(), getResources().getText(R.string.text_wrong_user_password), Toast.LENGTH_LONG).show();
     }
 
     private void showMessageToSelectTypeUser() {
@@ -109,12 +140,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isValidLogin() {
-        boolean isValid = !loginEditText.getText().toString().isEmpty();
-        return isValid;
+        String login = loginEditText.getText().toString();
+        User user = User.getUserBy(login);
+        currentUser = user;
+        if (user == null) {return false;}
+        boolean value = !login.isEmpty() && user.getLogin().equals(login);
+        return value;
     }
 
     private boolean isValidPassword() {
-        boolean isValid = !passwordEditText.getText().toString().isEmpty();
-        return isValid;
+        String password = passwordEditText.getText().toString();
+        String login = loginEditText.getText().toString();
+        User user = User.getUserBy(login);
+        if (user == null) {return false;}
+        boolean value = !login.isEmpty() && !password.isEmpty() && user.getPassword().equals(password);
+        return value;
     }
+
 }
