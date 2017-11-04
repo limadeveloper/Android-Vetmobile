@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     private Button finishButton;
     private Button dateButton;
     private int datePickerDelay = 3000;
-    private int delayToContinue = 2000;
+    private int delayToContinue = 1000;
     private String gender = "";
     private String typeUser;
     private String birthdayDate;

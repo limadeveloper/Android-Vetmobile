@@ -37,18 +37,32 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/markassistance_calendartitle_text_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#6238A1"
+                android:text="Mês - Ano"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:padding="12dp"/>
+
             <com.github.sundeepk.compactcalendarview.CompactCalendarView
                 android:id="@+id/markassistance_compactcalendar_view_id"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:padding="10dp"
-                app:compactCalendarTargetHeight="290dp"
-                app:compactCalendarTextSize="13sp"
                 app:compactCalendarBackgroundColor="#6238A1"
-                app:compactCalendarTextColor="@color/white"
-                app:compactCalendarCurrentSelectedDayBackgroundColor="#8835BA"
                 app:compactCalendarCurrentDayBackgroundColor="#3E3A86"
-                app:compactCalendarMultiEventIndicatorColor="@color/white" />
+                app:compactCalendarCurrentSelectedDayBackgroundColor="#8835BA"
+                app:compactCalendarMultiEventIndicatorColor="@color/white"
+                app:compactCalendarDisplayOtherMonthDays="false"
+                app:compactCalendarOtherMonthDaysTextColor="@color/colorPrimary"
+                app:compactCalendarTargetHeight="290dp"
+                app:compactCalendarTextColor="@color/white"
+                app:compactCalendarTextSize="13sp" />
 
             <Button
                 android:id="@+id/markassistance_selecteddate_button_id"

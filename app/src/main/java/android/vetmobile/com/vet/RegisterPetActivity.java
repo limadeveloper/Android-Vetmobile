@@ -34,7 +34,7 @@ public class RegisterPetActivity extends AppCompatActivity implements DatePicker
     private Button loadFotoButton;
     private Button finishButton;
     private int datePickerDelay = 3000;
-    private int delayToContinue = 2000;
+    private int delayToContinue = 1000;
     private boolean hasImage = false;
     private int RESULT_LOAD_IMAGE = 1;
     private Bitmap selectedPetImage = null;

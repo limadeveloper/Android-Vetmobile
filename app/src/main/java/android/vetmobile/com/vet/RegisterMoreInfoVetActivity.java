@@ -23,7 +23,7 @@ public class RegisterMoreInfoVetActivity extends AppCompatActivity {
     private Button finishButton;
     private String currentUserLogin;
     private User currentUser = null;
-    private int delayToContinue = 2000;
+    private int delayToContinue = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
