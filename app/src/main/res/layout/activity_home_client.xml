@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/earlsGreen"
                 android:alpha="0.8"
+                android:clickable="true"
                 android:orientation="horizontal">
 
                 <ImageView

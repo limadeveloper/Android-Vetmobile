@@ -8,6 +8,13 @@ O README é normalmente utilizado para explicar os passos necessários que irá 
 * Versão: 1.0
 * Repositório: https://limadeveloper@bitbucket.org/limadeveloper/android-vetmobile.git
 
+**Dependencias Utilizadas**
+https://developer.android.com/studio/build/dependencies.html
+
+* Material DateTime Picker `https://github.com/wdullaer/MaterialDateTimePicker`
+* Realm `https://realm.io/docs/java/latest/#installation`
+* CompactCalendarView `https://github.com/SundeepK/CompactCalendarView`
+
 ### Como contribuir? ###
 
 Para contribuir, é necessário clonar a branch develop, e partir dela criar sua própria branch para fazer as modificações.  

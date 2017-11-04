@@ -23,49 +23,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
-        <activity
             android:name=".LoginActivity"
             android:label=""
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
-
         </activity>
         <activity
             android:name=".RegisterActivity"
             android:label="@string/text_client"
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
-
         </activity>
         <activity
             android:name=".RegisterPetActivity"
             android:label="@string/text_pet"
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
-
         </activity>
         <activity
             android:name=".RegisterMoreInfoVetActivity"
             android:label=""
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
-
         </activity>
         <activity
             android:name=".HomeClientActivity"
             android:label=""
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
-
         </activity>
         <activity
             android:name=".HomeVetActivity"
+            android:label=""
+            android:theme="@style/AppCompat.FullScreen"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+            android:name=".MarkAssistanceActivity"
             android:label=""
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
