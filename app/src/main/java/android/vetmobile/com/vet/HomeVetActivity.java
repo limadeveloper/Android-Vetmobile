@@ -3,9 +3,12 @@ package android.vetmobile.com.vet;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class HomeVetActivity extends AppCompatActivity {
 
@@ -14,6 +17,9 @@ public class HomeVetActivity extends AppCompatActivity {
     private LinearLayout listItem3;
     private LinearLayout listItem4;
     private String currentUserLogin = null;
+    private FloatingActionButton fab1;
+    private boolean isFABOpen = false;
+    private int delayToContinue = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class HomeVetActivity extends AppCompatActivity {
 
         setOrientation();
         setCurrentUserLogin();
+        configureFAB();
     }
 
     private void setOrientation() {
@@ -85,6 +92,56 @@ public class HomeVetActivity extends AppCompatActivity {
             currentUserLogin = intent.getStringExtra(getResources().getString(R.string.key_current_user));
             if (currentUserLogin == null) {return;}
             User.updateStatusLogged(true, currentUserLogin);
+        }
+    }
+
+    private void configureFAB() {
+
+        FloatingActionButton fab = findViewById(R.id.homevet_fab_id);
+        fab1 = findViewById(R.id.homevet_fab1_id);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFABOpen) {
+                    showFABMenu();
+                }else {
+                    closeFABMenu();
+                }
+            }
+        });
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_doing_logout), Toast.LENGTH_SHORT).show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        User.logout(User.getLoggedUser(), getApplicationContext());
+                    }
+                }, delayToContinue);
+            }
+        });
+    }
+
+    private void showFABMenu() {
+        isFABOpen = true;
+        fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_64));
+    }
+
+    private void closeFABMenu() {
+        isFABOpen = false;
+        fab1.animate().translationY(0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!isFABOpen) {
+            super.onBackPressed();
+        }else {
+            closeFABMenu();
         }
     }
 
