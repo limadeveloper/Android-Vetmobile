@@ -3,6 +3,9 @@ package android.vetmobile.com.vet;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,8 +14,10 @@ import android.widget.Toast;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class MarkAssistanceActivity extends AppCompatActivity {
@@ -78,6 +83,29 @@ public class MarkAssistanceActivity extends AppCompatActivity {
 
     private void configureListView() {
 
+        List<User> users = User.getUsersBy(getResources().getString(R.string.text_const_type_user_vet));
+        List<String> names = new ArrayList<>();
+
+        if (users != null && !users.isEmpty()) {
+           listView.setEnabled(true);
+            for (User user: users) {
+                String item = ""+ user.getId() + ". "+ user.getName();
+                names.add(item);
+            }
+        }else {
+            listView.setEnabled(false);
+            names.add("Nenhum veterinário cadastrado");
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, names);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "selected item: "+ position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setOrientation() {
