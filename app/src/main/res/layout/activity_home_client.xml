@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white"
     tools:context="android.vetmobile.com.vet.HomeClientActivity">
@@ -234,4 +235,27 @@
 
         </LinearLayout>
     </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/homeclient_fab1_id"
+        android:layout_width="@dimen/standard_55"
+        android:layout_height="@dimen/standard_55"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/venetianRed"
+        app:borderWidth="0dp"
+        android:src="@drawable/logout"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/homeclient_fab_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:backgroundTint="@color/colorAccent"
+        app:borderWidth="0dp"
+        android:src="@drawable/filter_variant"/>
+
 </RelativeLayout>

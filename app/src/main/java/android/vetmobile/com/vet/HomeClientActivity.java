@@ -3,9 +3,11 @@ package android.vetmobile.com.vet;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class HomeClientActivity extends AppCompatActivity {
 
@@ -14,6 +16,8 @@ public class HomeClientActivity extends AppCompatActivity {
     private LinearLayout listItem3;
     private LinearLayout listItem4;
     private String currentUserLogin = null;
+    private FloatingActionButton fab1;
+    private boolean isFABOpen = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class HomeClientActivity extends AppCompatActivity {
 
         setOrientation();
         setCurrentUserLogin();
+        configureFAB();
     }
 
     private void addActionForListItem1() {
@@ -88,4 +93,46 @@ public class HomeClientActivity extends AppCompatActivity {
         }
     }
 
+    private void configureFAB() {
+
+        FloatingActionButton fab = findViewById(R.id.homeclient_fab_id);
+        fab1 = findViewById(R.id.homeclient_fab1_id);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!isFABOpen) {
+                    showFABMenu();
+                }else {
+                    closeFABMenu();
+                }
+            }
+        });
+
+        fab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Do something now", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void showFABMenu() {
+        isFABOpen = true;
+        fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_64));
+    }
+
+    private void closeFABMenu() {
+        isFABOpen = false;
+        fab1.animate().translationY(0);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (!isFABOpen) {
+            super.onBackPressed();
+        }else {
+            closeFABMenu();
+        }
+    }
 }
