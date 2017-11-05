@@ -77,4 +77,5 @@
     <string name="text_user_login_error">Usuário inválido ou indisponível. Escolha outro</string>
     <string name="text_wrong_user_login">Usuário inválido</string>
     <string name="text_wrong_user_password">Senha inválida</string>
+    <string name="text_doing_logout">Saindo...</string>
 </resources>
