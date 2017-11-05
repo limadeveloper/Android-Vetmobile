@@ -69,8 +69,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:backgroundTint="#8835BA"
+                android:backgroundTint="#6238A1"
                 android:layout_marginTop="16dp"
+                android:textAllCaps="false"
                 android:text=""/>
 
             <View

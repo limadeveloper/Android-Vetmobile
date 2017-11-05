@@ -68,8 +68,10 @@ public class MarkAssistanceActivity extends AppCompatActivity {
                     return;
                 }
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String stringDate = dateFormat.format(dateClicked);
+                SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                calendar.setTime(dateClicked);
+                String stringDate = ""+ calendar.get(Calendar.DAY_OF_MONTH) +" "+ monthFormat.format(calendar.getTime()) +" "+ calendar.get(Calendar.YEAR);
 
                 selectedDateButton.setText(stringDate);
             }
