@@ -51,6 +51,5 @@ dependencies {
     compile 'com.android.support:design:27.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.wdullaer:materialdatetimepicker:3.3.1'
-    compile 'uk.co.markormesher:android-fab:2.0.0'
     testCompile 'junit:junit:4.12'
 }
