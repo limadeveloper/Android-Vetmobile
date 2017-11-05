@@ -180,4 +180,5 @@ public class User extends RealmObject {
         }
         return TypeUserEnum.CLIENT;
     }
+
 }

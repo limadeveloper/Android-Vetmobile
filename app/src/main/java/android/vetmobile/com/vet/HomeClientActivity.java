@@ -3,6 +3,7 @@ package android.vetmobile.com.vet;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +19,7 @@ public class HomeClientActivity extends AppCompatActivity {
     private String currentUserLogin = null;
     private FloatingActionButton fab1;
     private boolean isFABOpen = false;
+    private int delayToContinue = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +114,14 @@ public class HomeClientActivity extends AppCompatActivity {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Do something now", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_doing_logout), Toast.LENGTH_SHORT).show();
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        User.logout(User.getLoggedUser(), getApplicationContext());
+                    }
+                }, delayToContinue);
             }
         });
     }
@@ -135,4 +144,5 @@ public class HomeClientActivity extends AppCompatActivity {
             closeFABMenu();
         }
     }
+
 }
