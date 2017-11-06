@@ -26,6 +26,8 @@ public class MarkAssistanceActivity extends AppCompatActivity {
     private CompactCalendarView calendarView;
     private Button selectedDateButton;
     private ListView listView;
+    boolean listIsEmpty = true;
+    String selectedDate = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +67,18 @@ public class MarkAssistanceActivity extends AppCompatActivity {
                 if (isYesterday(dateClicked)) {
                     showMessageErrorSelectInvalidDate();
                     selectedDateButton.setText("");
+                    selectedDate = "";
                     return;
                 }
 
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
                 calendar.setTime(dateClicked);
                 String stringDate = ""+ calendar.get(Calendar.DAY_OF_MONTH) +" "+ monthFormat.format(calendar.getTime()) +" "+ calendar.get(Calendar.YEAR);
 
                 selectedDateButton.setText(stringDate);
+                selectedDate = dateFormat.format(dateClicked);
             }
 
             @Override
@@ -89,13 +94,13 @@ public class MarkAssistanceActivity extends AppCompatActivity {
         List<String> names = new ArrayList<>();
 
         if (users != null && !users.isEmpty()) {
-           listView.setEnabled(true);
+            listIsEmpty = false;
             for (User user: users) {
                 String item = ""+ user.getId() + ". "+ user.getName();
                 names.add(item);
             }
         }else {
-            listView.setEnabled(false);
+            listIsEmpty = true;
             names.add("Nenhum veterinário cadastrado");
         }
 
@@ -105,7 +110,9 @@ public class MarkAssistanceActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "selected item: "+ position, Toast.LENGTH_SHORT).show();
+                if (listIsEmpty) {
+                    Toast.makeText(getApplicationContext(), "selected date: "+ selectedDate, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -123,7 +130,7 @@ public class MarkAssistanceActivity extends AppCompatActivity {
     }
 
     private void showMessageErrorSelectInvalidDate() {
-        Toast.makeText(getApplicationContext(), "Data inválida. Selecione uma data futura.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_select_future_date), Toast.LENGTH_SHORT).show();
     }
 
 }
