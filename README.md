@@ -8,7 +8,7 @@ O README é normalmente utilizado para explicar os passos necessários que irá 
 * Versão: 1.0
 * Repositório: https://limadeveloper@bitbucket.org/limadeveloper/android-vetmobile.git
 
-**Dependencias Utilizadas**
+**Dependencias Utilizadas**  
 https://developer.android.com/studio/build/dependencies.html
 
 * Material DateTime Picker `https://github.com/wdullaer/MaterialDateTimePicker`
