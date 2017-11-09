@@ -1,5 +1,6 @@
 package android.vetmobile.com.vet;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -90,7 +91,7 @@ public class MarkAssistanceActivity extends AppCompatActivity {
 
     private void configureListView() {
 
-        List<User> users = User.getUsersBy(getResources().getString(R.string.text_const_type_user_vet));
+        final List<User> users = User.getUsersBy(getResources().getString(R.string.text_const_type_user_vet));
         List<String> names = new ArrayList<>();
 
         if (users != null && !users.isEmpty()) {
@@ -110,8 +111,16 @@ public class MarkAssistanceActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (listIsEmpty) {
-                    Toast.makeText(getApplicationContext(), "selected date: "+ selectedDate, Toast.LENGTH_SHORT).show();
+                if (selectedDate.isEmpty()) {
+                    showMessageErrorNoSelectedDate();
+                    return;
+                }
+                if (!listIsEmpty) {
+                    Intent intent = new Intent(MarkAssistanceActivity.this, MarkAssistanceVetDetailsActivity.class);
+                    User user = users.get(position);
+                    intent.putExtra(getResources().getString(R.string.key_user_id), user.getId());
+                    intent.putExtra(getResources().getString(R.string.key_selected_date), selectedDate);
+                    startActivity(intent);
                 }
             }
         });
@@ -131,6 +140,10 @@ public class MarkAssistanceActivity extends AppCompatActivity {
 
     private void showMessageErrorSelectInvalidDate() {
         Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_select_future_date), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showMessageErrorNoSelectedDate() {
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.text_no_date_selected), Toast.LENGTH_LONG).show();
     }
 
 }

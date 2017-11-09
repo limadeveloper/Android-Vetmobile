@@ -42,6 +42,8 @@
     <string name="const_typeUserClient">2</string>
     <string name="key_typeUser">KEY_TYPE_USER</string>
     <string name="key_current_user">KEY_CURRENT_USER</string>
+    <string name="key_user_id">KEY_USER_ID</string>
+    <string name="key_selected_date">KEY_SELECTED_DATE</string>
     <string name="text_address">Endereço</string>
     <string name="text_address_number">Nº</string>
     <string name="text_neighborhood">Bairro</string>
@@ -79,4 +81,5 @@
     <string name="text_wrong_user_password">Senha inválida</string>
     <string name="text_doing_logout">Saindo...</string>
     <string name="text_select_future_date">Data inválida. Selecione uma data futura.</string>
+    <string name="text_no_date_selected">Para prosseguir, selecione uma data.</string>
 </resources>
