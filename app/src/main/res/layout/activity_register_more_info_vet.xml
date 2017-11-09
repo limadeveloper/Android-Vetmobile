@@ -130,7 +130,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
-                android:hint="@string/text_crv"/>
+                android:hint="@string/text_crmv"/>
 
             <EditText
                 android:id="@+id/domainarea_field_id"
