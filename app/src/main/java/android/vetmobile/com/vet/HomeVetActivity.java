@@ -128,7 +128,7 @@ public class HomeVetActivity extends AppCompatActivity {
 
     private void showFABMenu() {
         isFABOpen = true;
-        fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_64));
+        fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_70));
     }
 
     private void closeFABMenu() {

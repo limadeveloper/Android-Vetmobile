@@ -47,8 +47,16 @@ public class MarkAssistanceVetDetailsActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
+
         selectedDateTextView.setText(selectedDate);
         selectedVetNameTextView.setText(selectedUser.getName());
+
+        if (selectedUser != null) {
+            VetDetail vetDetail = VetDetail.getVetDetailByUserId(selectedUser.getId());
+            if (vetDetail == null) { return; }
+            String userDetails = "CRMV: "+ vetDetail.getCrmv() +"\nEspecialidade: "+ vetDetail.getDomainArea() +"\nEndereço: "+ vetDetail.getAddress() +"\nNº: "+ vetDetail.getAddressNumber() +"\nCidade: "+ vetDetail.getCity() +"\nEstado: "+ vetDetail.getUf();
+            selectedVetDescriptionTextView.setText(userDetails);
+        }
     }
 
 }
