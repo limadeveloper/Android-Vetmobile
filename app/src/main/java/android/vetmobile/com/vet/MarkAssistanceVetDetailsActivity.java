@@ -4,15 +4,24 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MarkAssistanceVetDetailsActivity extends AppCompatActivity {
 
     private TextView selectedDateTextView;
     private TextView selectedVetNameTextView;
     private TextView selectedVetDescriptionTextView;
+    private ListView listViewHours;
     private User selectedUser = null;
     private String selectedDate = null;
+    boolean listIsEmpty = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +31,12 @@ public class MarkAssistanceVetDetailsActivity extends AppCompatActivity {
         selectedDateTextView = findViewById(R.id.mavt_dateselected_text_id);
         selectedVetNameTextView = findViewById(R.id.mavt_vetname_text_id);
         selectedVetDescriptionTextView = findViewById(R.id.mavt_vetinfo_text_id);
+        listViewHours = findViewById(R.id.mavt_hours_list_id);
 
         setOrientation();
         configureExtras();
         updateUI();
+        configureListView();
     }
 
     private void setOrientation() {
@@ -57,6 +68,26 @@ public class MarkAssistanceVetDetailsActivity extends AppCompatActivity {
             String userDetails = "CRMV: "+ vetDetail.getCrmv() +"\nEspecialidade: "+ vetDetail.getDomainArea() +"\nEndereço: "+ vetDetail.getAddress() +"\nNº: "+ vetDetail.getAddressNumber() +"\nCidade: "+ vetDetail.getCity() +"\nEstado: "+ vetDetail.getUf();
             selectedVetDescriptionTextView.setText(userDetails);
         }
+    }
+
+    private void configureListView() {
+
+        List<String> hours = new ArrayList<>();
+
+        hours.add("Nenhum horário");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hours);
+        listViewHours.setAdapter(adapter);
+
+        listViewHours.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (!listIsEmpty) {
+                    // Go to next activity
+
+                }
+            }
+        });
     }
 
 }
