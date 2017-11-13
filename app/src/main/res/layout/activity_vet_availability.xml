@@ -467,17 +467,18 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/va_save_button_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="#0C3634"
+                android:text="Salvar"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/va_save_button_id"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:background="#0C3634"
-        android:text="Salvar"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

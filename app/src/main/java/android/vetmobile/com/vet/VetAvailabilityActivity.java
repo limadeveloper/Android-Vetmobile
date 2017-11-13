@@ -7,6 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class VetAvailabilityActivity extends AppCompatActivity {
 
     private TextView monthTextView;
@@ -80,7 +85,11 @@ public class VetAvailabilityActivity extends AppCompatActivity {
     }
 
     private void updateUI() {
-
+        SimpleDateFormat format = new SimpleDateFormat("MMM");
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        calendar.setTime(new Date());
+        String textDate = "Mês: "+ format.format(calendar.getTime()) +", "+ calendar.get(Calendar.YEAR);
+        monthTextView.setText(textDate);
     }
 
 }
