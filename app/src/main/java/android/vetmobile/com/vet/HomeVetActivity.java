@@ -71,7 +71,8 @@ public class HomeVetActivity extends AppCompatActivity {
         listItem3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something here
+                Intent intent = new Intent(HomeVetActivity.this, VetAvailabilityActivity.class);
+                startActivity(intent);
             }
         });
     }
