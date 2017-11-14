@@ -3,16 +3,20 @@ package android.vetmobile.com.vet;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class VetAvailabilityActivity extends AppCompatActivity {
+public class VetAvailabilityActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
     private TextView monthTextView;
     private EditText mondayFirstHourEditText;
@@ -32,6 +36,7 @@ public class VetAvailabilityActivity extends AppCompatActivity {
     private Button todayButton1;
     private Button todayButton2;
     private Button saveButton;
+    private TimePickerDialog timePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +64,61 @@ public class VetAvailabilityActivity extends AppCompatActivity {
 
         setOrientation();
         updateUI();
+
+        addActionToMondayFirstHour();
+        addActionToMondayLasttHour();
+        addActionToTuesdayFirstHour();
+        addActionToTuesdayLasttHour();
+        addActionToWednessFirstHour();
+        addActionToWednessLasttHour();
+        addActionToThursdayFirstHour();
+        addActionToThursdayLasttHour();
+        addActionToFridayFirstHour();
+        addActionToFridayLasttHour();
+        addActionToSaturdayFirstHour();
+        addActionToSaturdayLasttHour();
+        addActionToSundayFirstHour();
+        addActionToSundayLasttHour();
+
         addActionToTodayButton1();
         addActionToTodayButton2();
         addActionToSaveButton();
     }
+
+    private void addActionToMondayFirstHour() {
+        mondayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createTimePicker("Segunda - Hora Inicial");
+            }
+        });
+    }
+
+    private void addActionToMondayLasttHour() {}
+
+    private void addActionToTuesdayFirstHour() {}
+
+    private void addActionToTuesdayLasttHour() {}
+
+    private void addActionToWednessFirstHour() {}
+
+    private void addActionToWednessLasttHour() {}
+
+    private void addActionToThursdayFirstHour() {}
+
+    private void addActionToThursdayLasttHour() {}
+
+    private void addActionToFridayFirstHour() {}
+
+    private void addActionToFridayLasttHour() {}
+
+    private void addActionToSaturdayFirstHour() {}
+
+    private void addActionToSaturdayLasttHour() {}
+
+    private void addActionToSundayFirstHour() {}
+
+    private void addActionToSundayLasttHour() {}
 
     private void addActionToTodayButton1() {
 
@@ -90,6 +146,51 @@ public class VetAvailabilityActivity extends AppCompatActivity {
         calendar.setTime(new Date());
         String textDate = "Mês: "+ format.format(calendar.getTime()) +", "+ calendar.get(Calendar.YEAR);
         monthTextView.setText(textDate);
+    }
+
+    public void createTimePicker(String title) {
+
+        Calendar now = Calendar.getInstance();
+
+        if (timePickerDialog == null) {
+            timePickerDialog = TimePickerDialog.newInstance(
+                    VetAvailabilityActivity.this,
+                    now.get(Calendar.HOUR_OF_DAY),
+                    now.get(Calendar.MINUTE),
+                    true
+            );
+        }else {
+            timePickerDialog.initialize(
+                    VetAvailabilityActivity.this,
+                    now.get(Calendar.HOUR_OF_DAY),
+                    now.get(Calendar.MINUTE),
+                    now.get(Calendar.SECOND),
+                    true
+            );
+        }
+
+        timePickerDialog.setThemeDark(true);
+        timePickerDialog.vibrate(true);
+        timePickerDialog.dismissOnPause(true);
+        timePickerDialog.enableSeconds(false);
+        timePickerDialog.setVersion(TimePickerDialog.Version.VERSION_1);
+        timePickerDialog.setTitle(title);
+        timePickerDialog.show(getFragmentManager(), "Timepickerdialog");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TimePickerDialog dialog = (TimePickerDialog) getFragmentManager().findFragmentByTag("Timepickerdialog");
+        if (dialog != null) dialog.setOnTimeSetListener(this);
+    }
+
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        String hourString = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
+        String minuteString = minute < 10 ? "0"+minute : ""+minute;
+        String time = "You picked the following time: "+hourString+"h"+minuteString+"m";
+        Toast.makeText(getApplicationContext(), time, Toast.LENGTH_LONG).show();
     }
 
 }

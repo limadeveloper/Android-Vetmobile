@@ -34,6 +34,8 @@
     <string name="text_male">M</string>
     <string name="text_female">F</string>
     <string name="text_select_birthday">Data de adoção ou nascimento:</string>
+    <string name="text_start_hour">Hora Inicial:</string>
+    <string name="text_final_hour">Hora Final:</string>
     <string name="errorNoGenderSelected">Para prosseguir, selecione o sexo.</string>
     <string name="const_male">Masculino</string>
     <string name="const_female">Feminino</string>
