@@ -23,8 +23,8 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
     private EditText mondayLastHourEditText;
     private EditText tuesdayFirstHourEditText;
     private EditText tuesdayLastHourEditText;
-    private EditText wednessFirstHourEditText;
-    private EditText wednessLastHourEditText;
+    private EditText wednesdayFirstHourEditText;
+    private EditText wednesdayLastHourEditText;
     private EditText thursdayFirstHourEditText;
     private EditText thursdayLastHourEditText;
     private EditText fridayFirstHourEditText;
@@ -37,6 +37,25 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
     private Button todayButton2;
     private Button saveButton;
     private TimePickerDialog timePickerDialog;
+    private TAGWeekHour TAG = TAGWeekHour.EMPTY;
+
+    private enum TAGWeekHour {
+        EMPTY,
+        MONDAY_FIRST_HOUR,
+        MONDAY_LAST_HOUR,
+        TUESDAY_FIRST_HOUR,
+        TUESDAY_LAST_HOUR,
+        WEDNESDAY_FIRST_HOUR,
+        WEDNESDAY_LAST_HOUR,
+        THURSDAY_FIRST_HOUR,
+        THURSDAY_LAST_HOUR,
+        FRIDAY_FIRST_HOUR,
+        FRIDAY_LAST_HOUR,
+        SATURDAY_FIRST_HOUR,
+        SATURDAY_LAST_HOUR,
+        SUNDAY_FIRST_HOUR,
+        SUNDAY_LAST_HOUR,
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +67,8 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         mondayLastHourEditText = findViewById(R.id.va_monday_last_hour_edit_text_id);
         tuesdayFirstHourEditText = findViewById(R.id.va_tuesday_first_hour_edit_text_id);
         tuesdayLastHourEditText = findViewById(R.id.va_tuesday_last_hour_edit_text_id);
-        wednessFirstHourEditText = findViewById(R.id.va_wednesday_first_hour_edit_text_id);
-        wednessLastHourEditText = findViewById(R.id.va_wednesday_last_hour_edit_text_id);
+        wednesdayFirstHourEditText = findViewById(R.id.va_wednesday_first_hour_edit_text_id);
+        wednesdayLastHourEditText = findViewById(R.id.va_wednesday_last_hour_edit_text_id);
         thursdayFirstHourEditText = findViewById(R.id.va_thursday_first_hour_edit_text_id);
         thursdayLastHourEditText = findViewById(R.id.va_thursday_last_hour_edit_text_id);
         fridayFirstHourEditText = findViewById(R.id.va_friday_first_hour_edit_text_id);
@@ -66,19 +85,19 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         updateUI();
 
         addActionToMondayFirstHour();
-        addActionToMondayLasttHour();
+        addActionToMondayLastHour();
         addActionToTuesdayFirstHour();
-        addActionToTuesdayLasttHour();
-        addActionToWednessFirstHour();
-        addActionToWednessLasttHour();
+        addActionToTuesdayLastHour();
+        addActionToWednesdayFirstHour();
+        addActionToWednesdayLastHour();
         addActionToThursdayFirstHour();
-        addActionToThursdayLasttHour();
+        addActionToThursdayLastHour();
         addActionToFridayFirstHour();
-        addActionToFridayLasttHour();
+        addActionToFridayLastHour();
         addActionToSaturdayFirstHour();
-        addActionToSaturdayLasttHour();
+        addActionToSaturdayLastHour();
         addActionToSundayFirstHour();
-        addActionToSundayLasttHour();
+        addActionToSundayLastHour();
 
         addActionToTodayButton1();
         addActionToTodayButton2();
@@ -89,47 +108,167 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         mondayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TAG = TAGWeekHour.MONDAY_FIRST_HOUR;
                 createTimePicker("Segunda - Hora Inicial");
             }
         });
     }
 
-    private void addActionToMondayLasttHour() {}
+    private void addActionToMondayLastHour() {
+        mondayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.MONDAY_LAST_HOUR;
+                createTimePicker("Segunda - Hora Final");
+            }
+        });
+    }
 
-    private void addActionToTuesdayFirstHour() {}
+    private void addActionToTuesdayFirstHour() {
+        tuesdayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.TUESDAY_FIRST_HOUR;
+                createTimePicker("Terça - Hora Inicial");
+            }
+        });
+    }
 
-    private void addActionToTuesdayLasttHour() {}
+    private void addActionToTuesdayLastHour() {
+        tuesdayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.TUESDAY_LAST_HOUR;
+                createTimePicker("Terça - Hora Final");
+            }
+        });
+    }
 
-    private void addActionToWednessFirstHour() {}
+    private void addActionToWednesdayFirstHour() {
+        wednesdayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.WEDNESDAY_FIRST_HOUR;
+                createTimePicker("Quarta - Hora Inicial");
+            }
+        });
+    }
 
-    private void addActionToWednessLasttHour() {}
+    private void addActionToWednesdayLastHour() {
+        wednesdayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.WEDNESDAY_LAST_HOUR;
+                createTimePicker("Quarta - Hora Final");
+            }
+        });
+    }
 
-    private void addActionToThursdayFirstHour() {}
+    private void addActionToThursdayFirstHour() {
+        thursdayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.THURSDAY_FIRST_HOUR;
+                createTimePicker("Quinta - Hora Inicial");
+            }
+        });
+    }
 
-    private void addActionToThursdayLasttHour() {}
+    private void addActionToThursdayLastHour() {
+        thursdayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.THURSDAY_LAST_HOUR;
+                createTimePicker("Quinta - Hora Final");
+            }
+        });
+    }
 
-    private void addActionToFridayFirstHour() {}
+    private void addActionToFridayFirstHour() {
+        fridayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.FRIDAY_FIRST_HOUR;
+                createTimePicker("Sexta - Hora Inicial");
+            }
+        });
+    }
 
-    private void addActionToFridayLasttHour() {}
+    private void addActionToFridayLastHour() {
+        fridayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.FRIDAY_LAST_HOUR;
+                createTimePicker("Sexta - Hora Final");
+            }
+        });
+    }
 
-    private void addActionToSaturdayFirstHour() {}
+    private void addActionToSaturdayFirstHour() {
+        saturdayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.SATURDAY_FIRST_HOUR;
+                createTimePicker("Sábado - Hora Inicial");
+            }
+        });
+    }
 
-    private void addActionToSaturdayLasttHour() {}
+    private void addActionToSaturdayLastHour() {
+        saturdayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.SATURDAY_LAST_HOUR;
+                createTimePicker("Sábado - Hora Final");
+            }
+        });
+    }
 
-    private void addActionToSundayFirstHour() {}
+    private void addActionToSundayFirstHour() {
+        sundayFirstHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.SUNDAY_FIRST_HOUR;
+                createTimePicker("Domingo - Hora Inicial");
+            }
+        });
+    }
 
-    private void addActionToSundayLasttHour() {}
+    private void addActionToSundayLastHour() {
+        sundayLastHourEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TAG = TAGWeekHour.SUNDAY_LAST_HOUR;
+                createTimePicker("Domingo - Hora Final");
+            }
+        });
+    }
 
     private void addActionToTodayButton1() {
+        todayButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     private void addActionToTodayButton2() {
+        todayButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     private void addActionToSaveButton() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     private void setOrientation() {
@@ -187,10 +326,31 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+
         String hourString = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
         String minuteString = minute < 10 ? "0"+minute : ""+minute;
-        String time = "You picked the following time: "+hourString+"h"+minuteString+"m";
-        Toast.makeText(getApplicationContext(), time, Toast.LENGTH_LONG).show();
+        String time = ""+ hourString +"h"+ minuteString +"m";
+        String selectedHour = "Hora selecionada: "+ time;
+
+        Toast.makeText(getApplicationContext(), selectedHour, Toast.LENGTH_SHORT).show();
+
+        switch (TAG) {
+            case MONDAY_FIRST_HOUR: mondayFirstHourEditText.setText(time); break;
+            case MONDAY_LAST_HOUR: mondayLastHourEditText.setText(time); break;
+            case TUESDAY_FIRST_HOUR: tuesdayFirstHourEditText.setText(time); break;
+            case TUESDAY_LAST_HOUR: tuesdayLastHourEditText.setText(time); break;
+            case WEDNESDAY_FIRST_HOUR: wednesdayFirstHourEditText.setText(time); break;
+            case WEDNESDAY_LAST_HOUR: wednesdayLastHourEditText.setText(time); break;
+            case THURSDAY_FIRST_HOUR: thursdayFirstHourEditText.setText(time); break;
+            case THURSDAY_LAST_HOUR: thursdayLastHourEditText.setText(time); break;
+            case FRIDAY_FIRST_HOUR: fridayFirstHourEditText.setText(time); break;
+            case FRIDAY_LAST_HOUR: fridayLastHourEditText.setText(time); break;
+            case SATURDAY_FIRST_HOUR: saturdayFirstHourEditText.setText(time); break;
+            case SATURDAY_LAST_HOUR: saturdayLastHourEditText.setText(time); break;
+            case SUNDAY_FIRST_HOUR: sundayFirstHourEditText.setText(time); break;
+            case SUNDAY_LAST_HOUR: sundayLastHourEditText.setText(time); break;
+            default: break;
+        }
     }
 
 }
