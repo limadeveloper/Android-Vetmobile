@@ -3,6 +3,7 @@ package android.vetmobile.com.vet;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,9 +12,12 @@ import android.widget.Toast;
 
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class VetAvailabilityActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
@@ -38,6 +42,8 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
     private Button saveButton;
     private TimePickerDialog timePickerDialog;
     private TAGWeekHour TAG = TAGWeekHour.EMPTY;
+    private boolean serviceAvailableDuringAllDay = true;
+    private List<String> listOfDates = new ArrayList<>();
 
     private enum TAGWeekHour {
         EMPTY,
@@ -82,6 +88,7 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         saveButton = findViewById(R.id.va_save_button_id);
 
         setOrientation();
+        setListOfDates();
         updateUI();
 
         addActionToMondayFirstHour();
@@ -248,7 +255,8 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         todayButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                serviceAvailableDuringAllDay = true;
+                showToastMessage(getResources().getString(R.string.text_done));
             }
         });
     }
@@ -257,7 +265,8 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         todayButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                serviceAvailableDuringAllDay = false;
+                showToastMessage(getResources().getString(R.string.text_done));
             }
         });
     }
@@ -271,6 +280,10 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         });
     }
 
+    private void showToastMessage(String text) {
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+    }
+
     private void setOrientation() {
         if (Support.isTablet(getWindowManager())) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -280,11 +293,29 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
     }
 
     private void updateUI() {
+
         SimpleDateFormat format = new SimpleDateFormat("MMM");
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
         calendar.setTime(new Date());
         String textDate = "Mês: "+ format.format(calendar.getTime()) +", "+ calendar.get(Calendar.YEAR);
         monthTextView.setText(textDate);
+
+        printListOfDates();
+    }
+
+    private void setListOfDates() {
+        try {
+            Date fromDate = Support.getMonthStartDate();
+            Date toDate = Support.getMonthEndDate();
+            List<Date> dates = Support.getDates(fromDate, toDate);
+            listOfDates = Support.getStringDates(dates);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void printListOfDates() {
+        Log.d("", "list of dates: "+ listOfDates);
     }
 
     public void createTimePicker(String title) {

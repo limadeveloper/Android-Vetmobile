@@ -485,9 +485,10 @@
                 android:id="@+id/va_save_button_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:background="#0C3634"
                 android:text="Salvar"
+                android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 

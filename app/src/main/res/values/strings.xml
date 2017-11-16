@@ -81,4 +81,5 @@
     <string name="text_wrong_user_password">Senha inválida</string>
     <string name="text_doing_logout">Saindo...</string>
     <string name="text_empty_hour">——:——</string>
+    <string name="text_done">Pronto</string>
 </resources>

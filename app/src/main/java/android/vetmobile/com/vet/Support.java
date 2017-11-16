@@ -24,6 +24,13 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.TimeZone;
 
 public class Support {
 
@@ -167,4 +174,94 @@ public class Support {
         return value;
     }
 
+    // **********************
+    // DATES
+    // **********************
+    public enum DateOptions {
+        START,
+        END
+    }
+
+    public static String getDateFormat1() {
+        return "dd-MM-yyyy";
+    }
+
+    public static String getDateFormat2() {
+        return "MMM dd, yyyy";
+    }
+
+    public static List<Date> getDates(String fromDate, String toDate) {
+        ArrayList<Date> dates = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(getDateFormat1());
+        try {
+            Calendar fromCal = Calendar.getInstance();
+            fromCal.setTime(dateFormat.parse(fromDate));
+            Calendar toCal = Calendar.getInstance();
+            toCal.setTime(dateFormat.parse(toDate));
+            while (!fromCal.after(toCal)) {
+                dates.add(fromCal.getTime());
+                fromCal.add(Calendar.DATE, 1);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dates;
+    }
+
+    public static List<Date> getDates(Date fromDate, Date toDate) {
+        SimpleDateFormat format = new SimpleDateFormat(getDateFormat1());
+        String initialDate = format.format(fromDate);
+        String finalDate = format.format(toDate);
+        return getDates(initialDate, finalDate);
+    }
+
+    public static List<String> getStringDates(List<Date> fromDates) {
+        SimpleDateFormat format = new SimpleDateFormat(getDateFormat1());
+        List<String> result = new ArrayList<>();
+        for (Date date : fromDates) {
+            String stringDate = format.format(date);
+            result.add(stringDate);
+        }
+        return result;
+    }
+
+    /**
+     * @param option
+     * START for start date of month e.g.  Nov 01, 2017
+     * END for end date of month e.g.  Nov 30, 2017
+     * @return
+     */
+    public static String getMonthDate(DateOptions option) {
+        SimpleDateFormat format = new SimpleDateFormat(getDateFormat1());
+        format.setTimeZone(TimeZone.getDefault());
+        format.format(Calendar.getInstance().getTime());
+        Calendar calendar = Calendar.getInstance();
+        int date = calendar.getActualMinimum(Calendar.DATE);
+        if (DateOptions.END.equals(option)) {
+            date = calendar.getActualMaximum(Calendar.DATE);
+        }
+        calendar.set(Calendar.DATE, date);
+        String result = format.format(calendar.getTime());
+        return result;
+    }
+
+    public static String getMonthStartDateString() {
+        return getMonthDate(DateOptions.START);
+    }
+
+    public static String getMonthEndDateString() {
+        return getMonthDate(DateOptions.END);
+    }
+
+    public static Date getMonthStartDate() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat(getDateFormat1());
+        Date result = format.parse(getMonthStartDateString());
+        return result;
+    }
+
+    public static Date getMonthEndDate() throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat(getDateFormat1());
+        Date result = format.parse(getMonthEndDateString());
+        return result;
+    }
 }
