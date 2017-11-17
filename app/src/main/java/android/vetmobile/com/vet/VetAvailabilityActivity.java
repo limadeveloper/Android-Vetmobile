@@ -275,7 +275,9 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Fazer um loop na lista de datas do mês atual e filtrar pelo dia da semana.
+                // O Horário inserido em um determinado dia da semana será aplicado em todos os outros mesmos dias da semana da lista
+                // Salvar o objeto no banco
             }
         });
     }
