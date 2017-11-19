@@ -275,9 +275,35 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Fazer um loop na lista de datas do mês atual e filtrar pelo dia da semana.
+
+                // Verificar se existe algum horário para ser salvo. - OK
+                // Fazer um loop na lista de datas do mês atual e filtrar pelo dia da semana. - Ok
                 // O Horário inserido em um determinado dia da semana será aplicado em todos os outros mesmos dias da semana da lista
                 // Salvar o objeto no banco
+
+                if (hasAnyHour()) {
+                    if (listOfDates.size() > 0) {
+                        for (String date: listOfDates) {
+
+                            Support.DateWeekDays weekDay = Support.getWeekDayByStringDate(date);
+
+                            switch (weekDay) {
+                                case MONDAY: break;
+                                case TUESDAY: break;
+                                case WEDNESDAY: break;
+                                case THURSDAY: break;
+                                case FRIDAY: break;
+                                case SATURDAY: break;
+                                case SUNDAY: break;
+                                default: break;
+                            }
+                        }
+                    }else {
+                        showToastMessage(getResources().getString(R.string.text_internal_error_02));
+                    }
+                }else {
+                    showToastMessage(getResources().getString(R.string.text_no_hour_to_save));
+                }
             }
         });
     }
@@ -318,6 +344,10 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
 
     private void printListOfDates() {
         Log.d("", "list of dates: "+ listOfDates);
+    }
+
+    private boolean hasAnyHour() {
+        return (!mondayFirstHourEditText.getText().toString().isEmpty() && !mondayLastHourEditText.getText().toString().isEmpty()) || (!tuesdayFirstHourEditText.getText().toString().isEmpty() && !tuesdayLastHourEditText.getText().toString().isEmpty()) || (!wednesdayFirstHourEditText.getText().toString().isEmpty() && !wednesdayLastHourEditText.getText().toString().isEmpty()) || (!thursdayFirstHourEditText.getText().toString().isEmpty() && !thursdayLastHourEditText.getText().toString().isEmpty()) || (!fridayFirstHourEditText.getText().toString().isEmpty() && !fridayLastHourEditText.getText().toString().isEmpty()) || (!saturdayFirstHourEditText.getText().toString().isEmpty() && !saturdayLastHourEditText.getText().toString().isEmpty()) || (!sundayFirstHourEditText.getText().toString().isEmpty() && !sundayLastHourEditText.getText().toString().isEmpty());
     }
 
     public void createTimePicker(String title) {
@@ -363,9 +393,6 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         String hourString = hourOfDay < 10 ? "0"+hourOfDay : ""+hourOfDay;
         String minuteString = minute < 10 ? "0"+minute : ""+minute;
         String time = ""+ hourString +"h"+ minuteString +"m";
-        String selectedHour = "Hora selecionada: "+ time;
-
-        Toast.makeText(getApplicationContext(), selectedHour, Toast.LENGTH_SHORT).show();
 
         switch (TAG) {
             case MONDAY_FIRST_HOUR: mondayFirstHourEditText.setText(time); break;

@@ -182,6 +182,17 @@ public class Support {
         END
     }
 
+    public enum DateWeekDays {
+        NONE,
+        MONDAY,
+        TUESDAY,
+        WEDNESDAY,
+        THURSDAY,
+        FRIDAY,
+        SATURDAY,
+        SUNDAY
+    }
+
     public static String getDateFormat1() {
         return "dd-MM-yyyy";
     }
@@ -262,6 +273,31 @@ public class Support {
     public static Date getMonthEndDate() throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat(getDateFormat1());
         Date result = format.parse(getMonthEndDateString());
+        return result;
+    }
+
+    public static DateWeekDays getWeekDayByStringDate(String stringDate) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(getDateFormat1());
+        DateWeekDays result = DateWeekDays.NONE;
+        int dayOfWeek = -1;
+        try {
+            Calendar calendar = Calendar.getInstance();
+            Date date = dateFormat.parse(stringDate);
+            calendar.setTime(date);
+            dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        switch (dayOfWeek) {
+            case 0: result = DateWeekDays.SUNDAY; break;
+            case 1: result = DateWeekDays.MONDAY; break;
+            case 2: result = DateWeekDays.TUESDAY; break;
+            case 3: result = DateWeekDays.WEDNESDAY; break;
+            case 4: result = DateWeekDays.THURSDAY; break;
+            case 5: result = DateWeekDays.FRIDAY; break;
+            case 6: result = DateWeekDays.SATURDAY; break;
+            default: break;
+        }
         return result;
     }
 }

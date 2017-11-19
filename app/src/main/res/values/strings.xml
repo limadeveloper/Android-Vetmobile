@@ -70,7 +70,8 @@
     <string name="text_pet_name">Nome do Pet</string>
     <string name="text_select_pet_photo">Para continuar, selecione uma imagem do Pet.</string>
     <string name="text_database_try_saving_object_null">Não foi possível salvar os dados</string>
-    <string name="text_internal_error">Erro interno - 01</string>
+    <string name="text_internal_error_01">Erro interno - 01</string>
+    <string name="text_internal_error_02">Erro interno - 02</string>
     <string name="text_const_type_user_vet">VET</string>
     <string name="text_const_type_user_client">CLIENT</string>
     <string name="text_save_user_successful">Usuário salvo com sucesso</string>
@@ -82,4 +83,5 @@
     <string name="text_doing_logout">Saindo...</string>
     <string name="text_empty_hour">——:——</string>
     <string name="text_done">Pronto</string>
+    <string name="text_no_hour_to_save">Nenhum horário para salvar.</string>
 </resources>
