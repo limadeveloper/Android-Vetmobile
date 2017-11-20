@@ -23,7 +23,7 @@ public class DBManager {
     }
 
     public static void showMessageErrorEntityNull(Context context) {
-        Toast.makeText(context, context.getResources().getString(R.string.text_internal_error), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, context.getResources().getString(R.string.text_internal_error_01), Toast.LENGTH_LONG).show();
     }
 
     public static void showRealmPath(Context context) {

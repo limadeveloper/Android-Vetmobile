@@ -283,6 +283,24 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
 
                 if (hasAnyHour()) {
                     if (listOfDates.size() > 0) {
+
+                        List<String> filterDates = new ArrayList<>();
+
+                        for (String stringDate: listOfDates) {
+                            SimpleDateFormat dateFormat = new SimpleDateFormat(Support.getDateFormat1());
+                            try {
+                                Date date = dateFormat.parse(stringDate);
+                                if (!date.before(new Date())) {
+                                    filterDates.add(stringDate);
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        listOfDates = filterDates;
+                        Log.d("", "filter dates: "+ listOfDates);
+
                         for (String date: listOfDates) {
 
                             Support.DateWeekDays weekDay = Support.getWeekDayByStringDate(date);
