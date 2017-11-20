@@ -285,7 +285,9 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
                     if (listOfDates.size() > 0) {
 
                         List<String> filterDates = new ArrayList<>();
+                        List<Boolean> saveStatus = new ArrayList<>();
 
+                        // Filtra os dias posteriores a data atual
                         for (String stringDate: listOfDates) {
                             SimpleDateFormat dateFormat = new SimpleDateFormat(Support.getDateFormat1());
                             try {
@@ -301,20 +303,58 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
                         listOfDates = filterDates;
                         Log.d("", "filter dates: "+ listOfDates);
 
+                        // Salva os dados no banco
                         for (String date: listOfDates) {
 
                             Support.DateWeekDays weekDay = Support.getWeekDayByStringDate(date);
+                            int weekDayNumber = Support.getWeekDayNumberByEnum(weekDay);
 
                             switch (weekDay) {
-                                case MONDAY: break;
-                                case TUESDAY: break;
-                                case WEDNESDAY: break;
-                                case THURSDAY: break;
-                                case FRIDAY: break;
-                                case SATURDAY: break;
-                                case SUNDAY: break;
+                                case MONDAY:
+                                    boolean monStatus = saveAvailability(date, weekDayNumber, mondayFirstHourEditText.getText().toString(), mondayLastHourEditText.getText().toString());
+                                    saveStatus.add(monStatus);
+                                    break;
+                                case TUESDAY:
+                                    boolean tueStatus = saveAvailability(date, weekDayNumber, tuesdayFirstHourEditText.getText().toString(), tuesdayLastHourEditText.getText().toString());
+                                    saveStatus.add(tueStatus);
+                                    break;
+                                case WEDNESDAY:
+                                    boolean wedStatus = saveAvailability(date, weekDayNumber, wednesdayFirstHourEditText.getText().toString(), wednesdayLastHourEditText.getText().toString());
+                                    saveStatus.add(wedStatus);
+                                    break;
+                                case THURSDAY:
+                                    boolean thuStatus = saveAvailability(date, weekDayNumber, thursdayFirstHourEditText.getText().toString(), thursdayLastHourEditText.getText().toString());
+                                    saveStatus.add(thuStatus);
+                                    break;
+                                case FRIDAY:
+                                    boolean friStatus = saveAvailability(date, weekDayNumber, fridayFirstHourEditText.getText().toString(), fridayLastHourEditText.getText().toString());
+                                    saveStatus.add(friStatus);
+                                    break;
+                                case SATURDAY:
+                                    boolean satStatus = saveAvailability(date, weekDayNumber, saturdayFirstHourEditText.getText().toString(), saturdayLastHourEditText.getText().toString());
+                                    saveStatus.add(satStatus);
+                                    break;
+                                case SUNDAY:
+                                    boolean sunStatus = saveAvailability(date, weekDayNumber, sundayFirstHourEditText.getText().toString(), sundayLastHourEditText.getText().toString());
+                                    saveStatus.add(sunStatus);
+                                    break;
                                 default: break;
                             }
+                        }
+
+                        // Verifica se ocorreu algum erro ao tentar salvar os dados
+                        boolean hasError = false;
+                        for (boolean saved: saveStatus) {
+                            if (!saved) {
+                                hasError = true;
+                                break;
+                            }
+                        }
+
+                        if (hasError) {
+                            showToastMessage("Ocorreu um erro ao tentar salvar algum dos horários.");
+                        }else {
+                            showToastMessage("Os dados foram salvos com sucesso.");
                         }
                     }else {
                         showToastMessage(getResources().getString(R.string.text_internal_error_02));
@@ -366,6 +406,27 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
 
     private boolean hasAnyHour() {
         return (!mondayFirstHourEditText.getText().toString().isEmpty() && !mondayLastHourEditText.getText().toString().isEmpty()) || (!tuesdayFirstHourEditText.getText().toString().isEmpty() && !tuesdayLastHourEditText.getText().toString().isEmpty()) || (!wednesdayFirstHourEditText.getText().toString().isEmpty() && !wednesdayLastHourEditText.getText().toString().isEmpty()) || (!thursdayFirstHourEditText.getText().toString().isEmpty() && !thursdayLastHourEditText.getText().toString().isEmpty()) || (!fridayFirstHourEditText.getText().toString().isEmpty() && !fridayLastHourEditText.getText().toString().isEmpty()) || (!saturdayFirstHourEditText.getText().toString().isEmpty() && !saturdayLastHourEditText.getText().toString().isEmpty()) || (!sundayFirstHourEditText.getText().toString().isEmpty() && !sundayLastHourEditText.getText().toString().isEmpty());
+    }
+
+    private boolean saveAvailability(String date, int weekDayNumber, String startHour, String finishHour) {
+
+        String weekDayName = Support.getWeekDayNameByNumber(weekDayNumber);
+        User user = User.getLoggedUser();
+
+        VetAvailability availability = new VetAvailability(
+                date,
+                weekDayNumber,
+                weekDayName,
+                startHour,
+                finishHour,
+                user
+        );
+
+        VetAvailability.insertOrUpdateData(getApplicationContext(), availability);
+
+        boolean status = VetAvailability.getAvailabilityBy(availability.getId()) != null;
+
+        return status;
     }
 
     public void createTimePicker(String title) {

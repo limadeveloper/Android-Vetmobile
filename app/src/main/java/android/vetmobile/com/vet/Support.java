@@ -278,7 +278,6 @@ public class Support {
 
     public static DateWeekDays getWeekDayByStringDate(String stringDate) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(getDateFormat1());
-        DateWeekDays result = DateWeekDays.NONE;
         int dayOfWeek = -1;
         try {
             Calendar calendar = Calendar.getInstance();
@@ -288,16 +287,45 @@ public class Support {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        switch (dayOfWeek) {
-            case 0: result = DateWeekDays.SUNDAY; break;
-            case 1: result = DateWeekDays.MONDAY; break;
-            case 2: result = DateWeekDays.TUESDAY; break;
-            case 3: result = DateWeekDays.WEDNESDAY; break;
-            case 4: result = DateWeekDays.THURSDAY; break;
-            case 5: result = DateWeekDays.FRIDAY; break;
-            case 6: result = DateWeekDays.SATURDAY; break;
-            default: break;
+        return getWeekDayEnumByNumber(dayOfWeek);
+    }
+
+    public static String getWeekDayNameByNumber(int weekNumber) {
+        switch (weekNumber) {
+            case 1: return "SUNDAY";
+            case 2: return "MONDAY";
+            case 3: return "TUESDAY";
+            case 4: return "WEDNESDAY";
+            case 5: return "THURSDAY";
+            case 6: return "FRIDAY";
+            case 7: return "SATURDAY";
+            default: return "";
         }
-        return result;
+    }
+
+    public static DateWeekDays getWeekDayEnumByNumber(int weekNumber) {
+        switch (weekNumber) {
+            case 1: return DateWeekDays.SUNDAY;
+            case 2: return DateWeekDays.MONDAY;
+            case 3: return DateWeekDays.TUESDAY;
+            case 4: return DateWeekDays.WEDNESDAY;
+            case 5: return DateWeekDays.THURSDAY;
+            case 6: return DateWeekDays.FRIDAY;
+            case 7: return DateWeekDays.SATURDAY;
+            default: return DateWeekDays.NONE;
+        }
+    }
+
+    public static int getWeekDayNumberByEnum(DateWeekDays weekDay) {
+        switch (weekDay) {
+            case SUNDAY: return 1;
+            case MONDAY: return 2;
+            case TUESDAY: return 3;
+            case WEDNESDAY: return 4;
+            case THURSDAY: return 5;
+            case FRIDAY: return 6;
+            case SATURDAY: return 7;
+            default: return -1;
+        }
     }
 }
