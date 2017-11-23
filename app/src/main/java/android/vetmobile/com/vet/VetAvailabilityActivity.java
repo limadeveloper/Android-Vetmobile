@@ -281,11 +281,6 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
             @Override
             public void onClick(View v) {
 
-                // Verificar se existe algum horário para ser salvo. - OK
-                // Fazer um loop na lista de datas do mês atual e filtrar pelo dia da semana. - Ok
-                // O Horário inserido em um determinado dia da semana será aplicado em todos os outros mesmos dias da semana da lista
-                // Salvar o objeto no banco
-
                 if (hasAnyHour()) {
                     if (listOfDates.size() > 0) {
 
