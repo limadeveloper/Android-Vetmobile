@@ -57,9 +57,14 @@ public class VetAvailability extends RealmObject {
         return realm.where(VetAvailability.class).findAll();
     }
 
-    public static VetAvailability getAvailabilityBy(int id) {
+    public static VetAvailability getAvailabilityById(int id) {
         Realm realm = Realm.getDefaultInstance();
         return realm.where(VetAvailability.class).equalTo(getKeyID(), id).findFirst();
+    }
+
+    public static VetAvailability getAvailabilityByWeekDayNumber(int weekDayNumber) {
+        Realm realm = Realm.getDefaultInstance();
+        return realm.where(VetAvailability.class).equalTo(getKeyID(), weekDayNumber).findFirst();
     }
 
     public static void insertOrUpdateData(final Context context, final VetAvailability availability) {

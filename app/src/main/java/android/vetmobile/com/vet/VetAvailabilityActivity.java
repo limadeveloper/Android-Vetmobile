@@ -463,6 +463,25 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         String textDate = "Mês: "+ format.format(calendar.getTime()) +", "+ calendar.get(Calendar.YEAR);
         monthTextView.setText(textDate);
 
+        try {
+            mondayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.MONDAY)).getStartHour());
+            mondayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.MONDAY)).getFinishHour());
+            tuesdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.TUESDAY)).getStartHour());
+            tuesdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.TUESDAY)).getFinishHour());
+            wednesdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.WEDNESDAY)).getStartHour());
+            wednesdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.WEDNESDAY)).getFinishHour());
+            thursdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.THURSDAY)).getStartHour());
+            thursdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.THURSDAY)).getFinishHour());
+            fridayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.FRIDAY)).getStartHour());
+            fridayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.FRIDAY)).getFinishHour());
+            saturdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SATURDAY)).getStartHour());
+            saturdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SATURDAY)).getFinishHour());
+            sundayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SUNDAY)).getStartHour());
+            sundayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SUNDAY)).getFinishHour());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         printListOfDates();
     }
 
@@ -501,7 +520,7 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
 
         VetAvailability.insertOrUpdateData(getApplicationContext(), availability);
 
-        boolean status = VetAvailability.getAvailabilityBy(availability.getId()) != null;
+        boolean status = VetAvailability.getAvailabilityById(availability.getId()) != null;
 
         return status;
     }
