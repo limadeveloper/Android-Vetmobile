@@ -290,7 +290,7 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
                         Date today = new Date();
                         String todayString = dateFormat.format(today);
 
-                        // Filtra os dias posteriores a data atual
+                        // Filtra somente as datas válidas para adicionar no array
                         for (String stringDate: listOfDates) {
                             try {
                                 Date date = dateFormat.parse(stringDate);
@@ -463,23 +463,41 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
         String textDate = "Mês: "+ format.format(calendar.getTime()) +", "+ calendar.get(Calendar.YEAR);
         monthTextView.setText(textDate);
 
-        try {
-            mondayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.MONDAY)).getStartHour());
-            mondayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.MONDAY)).getFinishHour());
-            tuesdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.TUESDAY)).getStartHour());
-            tuesdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.TUESDAY)).getFinishHour());
-            wednesdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.WEDNESDAY)).getStartHour());
-            wednesdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.WEDNESDAY)).getFinishHour());
-            thursdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.THURSDAY)).getStartHour());
-            thursdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.THURSDAY)).getFinishHour());
-            fridayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.FRIDAY)).getStartHour());
-            fridayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.FRIDAY)).getFinishHour());
-            saturdayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SATURDAY)).getStartHour());
-            saturdayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SATURDAY)).getFinishHour());
-            sundayFirstHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SUNDAY)).getStartHour());
-            sundayLastHourEditText.setText(VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SUNDAY)).getFinishHour());
-        } catch (Exception e) {
-            e.printStackTrace();
+        VetAvailability availabilityMonday = VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.MONDAY));
+        VetAvailability availabilityTuesday = VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.TUESDAY));
+        VetAvailability availabilityWednesday = VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.WEDNESDAY));
+        VetAvailability availabilityThursday = VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.THURSDAY));
+        VetAvailability availabilityFriday= VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.FRIDAY));
+        VetAvailability availabilitySaturday = VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SATURDAY));
+        VetAvailability availabilitySunday= VetAvailability.getAvailabilityByWeekDayNumber(Support.getWeekDayNumberByEnum(Support.DateWeekDays.SUNDAY));
+
+        if (availabilityMonday != null) {
+            mondayFirstHourEditText.setText(availabilityMonday.getStartHour());
+            mondayLastHourEditText.setText(availabilityMonday.getFinishHour());
+        }
+        if (availabilityTuesday != null) {
+            tuesdayFirstHourEditText.setText(availabilityTuesday.getStartHour());
+            tuesdayLastHourEditText.setText(availabilityTuesday.getFinishHour());
+        }
+        if (availabilityWednesday != null) {
+            wednesdayFirstHourEditText.setText(availabilityWednesday.getStartHour());
+            wednesdayLastHourEditText.setText(availabilityWednesday.getFinishHour());
+        }
+        if (availabilityThursday != null) {
+            thursdayFirstHourEditText.setText(availabilityThursday.getStartHour());
+            thursdayLastHourEditText.setText(availabilityThursday.getFinishHour());
+        }
+        if (availabilityFriday != null) {
+            fridayFirstHourEditText.setText(availabilityFriday.getStartHour());
+            fridayLastHourEditText.setText(availabilityFriday.getFinishHour());
+        }
+        if (availabilitySaturday != null) {
+            saturdayFirstHourEditText.setText(availabilitySaturday.getStartHour());
+            saturdayLastHourEditText.setText(availabilitySaturday.getFinishHour());
+        }
+        if (availabilitySunday != null) {
+            sundayFirstHourEditText.setText(availabilitySunday.getStartHour());
+            sundayLastHourEditText.setText(availabilitySunday.getFinishHour());
         }
 
         printListOfDates();

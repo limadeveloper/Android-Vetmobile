@@ -5,6 +5,7 @@
 package android.vetmobile.com.vet;
 
 import android.content.Context;
+import android.util.Log;
 
 import io.realm.Realm;
 import io.realm.RealmObject;
@@ -14,7 +15,7 @@ import io.realm.annotations.PrimaryKey;
 public class VetAvailability extends RealmObject {
 
     @PrimaryKey
-    private int id;
+    private String id;
     private String date;
     private int weekDayNumber;
     private String weekDayName;
@@ -33,8 +34,8 @@ public class VetAvailability extends RealmObject {
         this.user = user;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
     public String getDate() { return date; }
     public void setDate(String date) { this.date = date; }
     public int getWeekDayNumber() { return weekDayNumber; }
@@ -48,8 +49,12 @@ public class VetAvailability extends RealmObject {
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
-    public static String getKeyID() {
+    public static String getKeyId() {
         return "id";
+    }
+
+    public static String getKeyWeekDayNumber() {
+        return "weekDayNumber";
     }
 
     public static RealmResults<VetAvailability> getResults() {
@@ -57,14 +62,16 @@ public class VetAvailability extends RealmObject {
         return realm.where(VetAvailability.class).findAll();
     }
 
-    public static VetAvailability getAvailabilityById(int id) {
+    public static VetAvailability getAvailabilityById(String id) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(VetAvailability.class).equalTo(getKeyID(), id).findFirst();
+        return realm.where(VetAvailability.class).equalTo(getKeyId(), id).findFirst();
     }
 
     public static VetAvailability getAvailabilityByWeekDayNumber(int weekDayNumber) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(VetAvailability.class).equalTo(getKeyID(), weekDayNumber).findFirst();
+        VetAvailability result = realm.where(VetAvailability.class).equalTo(getKeyWeekDayNumber(), weekDayNumber).findFirst();
+        Log.d("availability", " VetAvailability: "+ result);
+        return result;
     }
 
     public static void insertOrUpdateData(final Context context, final VetAvailability availability) {
@@ -75,11 +82,7 @@ public class VetAvailability extends RealmObject {
                 @Override
                 public void execute(Realm realm) {
                     if (availability != null) {
-                        Number currentId = realm.where(VetAvailability.class).max(VetAvailability.getKeyID());
-                        int nextId = 1;
-                        if (currentId != null) {
-                            nextId = currentId.intValue() + 1;
-                        }
+                        String nextId = availability.getDate().replace("/","").toString().replace("-","");
                         availability.setId(nextId);
                         realm.insertOrUpdate(availability);
                         return;
