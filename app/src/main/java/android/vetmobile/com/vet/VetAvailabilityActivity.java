@@ -261,7 +261,7 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
             @Override
             public void onClick(View v) {
                 serviceAvailableDuringAllDay = true;
-                showToastMessage(getResources().getString(R.string.text_done));
+                showToastMessage(getResources().getString(R.string.text_done_to_save_data));
             }
         });
     }
@@ -271,7 +271,7 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
             @Override
             public void onClick(View v) {
                 serviceAvailableDuringAllDay = false;
-                showToastMessage(getResources().getString(R.string.text_done));
+                showToastMessage(getResources().getString(R.string.text_done_to_save_data));
             }
         });
     }
@@ -309,6 +309,8 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
                             if (!listOfDates.contains(todayString)) {
                                 listOfDates.add(0, todayString);
                             }
+                        }else {
+                            VetAvailability.deleteData(todayString);
                         }
 
                         Log.d("", "filter dates: "+ listOfDates);
@@ -444,7 +446,7 @@ public class VetAvailabilityActivity extends AppCompatActivity implements TimePi
     }
 
     private void showToastMessage(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
     }
 
     private void setOrientation() {

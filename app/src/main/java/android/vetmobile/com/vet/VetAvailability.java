@@ -57,6 +57,10 @@ public class VetAvailability extends RealmObject {
         return "weekDayNumber";
     }
 
+    public static String getKeyDate() {
+        return "date";
+    }
+
     public static RealmResults<VetAvailability> getResults() {
         Realm realm = Realm.getDefaultInstance();
         return realm.where(VetAvailability.class).findAll();
@@ -97,15 +101,19 @@ public class VetAvailability extends RealmObject {
         }
     }
 
-    public static void deleteAllData() {
+    public static void deleteData(String date) {
         Realm realm = null;
         try {
             realm = Realm.getDefaultInstance();
-            final RealmResults<VetAvailability> results = realm.where(VetAvailability.class).findAll();
+            RealmResults<VetAvailability> results = realm.where(VetAvailability.class).findAll();
+            if (date != null) {
+                results = realm.where(VetAvailability.class).equalTo(getKeyDate(), date).findAll();
+            }
+            final RealmResults<VetAvailability> finalResults = results;
             realm.executeTransaction(new Realm.Transaction() {
                 @Override
                 public void execute(Realm realm) {
-                    results.deleteAllFromRealm();
+                    finalResults.deleteAllFromRealm();
                 }
             });
         }finally {
