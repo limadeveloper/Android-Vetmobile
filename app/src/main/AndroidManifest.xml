@@ -66,6 +66,7 @@
         </activity>
         <activity
             android:name=".MarkAssistanceVetDetailsActivity"
+            android:name=".VetAvailabilityActivity"
             android:label=""
             android:theme="@style/AppCompat.FullScreen"
             android:windowSoftInputMode="stateHidden">
