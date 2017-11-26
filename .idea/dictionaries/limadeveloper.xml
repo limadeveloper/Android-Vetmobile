@@ -1,12 +1,15 @@
 <component name="ProjectDictionaryState">
   <dictionary name="limadeveloper">
     <words>
+      <w>adicionando</w>
       <w>adicionar</w>
       <w>algo</w>
       <w>aniversário</w>
+      <w>atual</w>
       <w>banco</w>
       <w>cadastrar</w>
       <w>carregar</w>
+      <w>caso</w>
       <w>cliente</w>
       <w>configurações</w>
       <w>confirmar</w>
@@ -15,6 +18,7 @@
       <w>cria</w>
       <w>criar</w>
       <w>dados</w>
+      <w>datas</w>
       <w>datepickerdialog</w>
       <w>entrar</w>
       <w>errado</w>
@@ -22,17 +26,20 @@
       <w>especialidade</w>
       <w>executar</w>
       <w>feminino</w>
+      <w>filtra</w>
       <w>finalizar</w>
       <w>foto</w>
       <w>fêmea</w>
       <w>fêmia</w>
       <w>homem</w>
+      <w>lista</w>
       <w>masculino</w>
       <w>minha</w>
       <w>mostra</w>
       <w>mulher</w>
       <w>método</w>
       <w>nascimento</w>
+      <w>necessário</w>
       <w>opções</w>
       <w>outro</w>
       <w>preencha</w>
@@ -42,6 +49,7 @@
       <w>salva</w>
       <w>selecione</w>
       <w>senha</w>
+      <w>somente</w>
       <w>tela</w>
       <w>telefone</w>
       <w>tipo</w>
@@ -49,6 +57,7 @@
       <w>validação</w>
       <w>veterinário</w>
       <w>vetmobile</w>
+      <w>válidas</w>
     </words>
   </dictionary>
 </component>

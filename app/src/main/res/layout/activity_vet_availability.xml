@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="android.vetmobile.com.vet.VetAvailabilityActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/img_background"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#173D4A"
+        android:alpha="0.7">
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollview_id"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Minha Disponibilidade"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/va_month_text_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mês: "
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:text="Horário Inicial"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textStyle="normal"/>
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:text="Horário Final"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textStyle="normal"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Segunda"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_monday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_monday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Terça"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_tuesday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_tuesday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Quarta"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_wednesday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_wednesday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Quinta"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_thursday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_thursday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Sexta"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_friday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_friday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Sábado"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_saturday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_saturday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="26dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_gravity="center"
+                        android:text="Domingo"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="normal"/>
+
+                    <EditText
+                        android:id="@+id/va_sunday_first_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                    <EditText
+                        android:id="@+id/va_sunday_last_hour_edit_text_id"
+                        android:layout_width="90dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="8dp"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:hint="@string/text_empty_hour"
+                        android:focusable="false"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/standard_12">
+            </View>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/standard_12"
+                android:textSize="22sp"
+                android:text="HOJE"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:textAlignment="center"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/standard_12"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/va_today_button_1_id"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:textAllCaps="false"
+                    android:text="Marcar serviço como disponível durante todo o dia"
+                    android:background="#173D4A"
+                    android:padding="8dp"/>
+
+                <Button
+                    android:id="@+id/va_today_button_2_id"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:text="Marcar serviço como indisponível durante todo o dia"
+                    android:background="#173D4A"
+                    android:padding="8dp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/va_save_button_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:background="#0C3634"
+                android:text="Salvar"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

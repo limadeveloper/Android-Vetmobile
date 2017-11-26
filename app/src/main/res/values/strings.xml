@@ -34,6 +34,8 @@
     <string name="text_male">M</string>
     <string name="text_female">F</string>
     <string name="text_select_birthday">Data de adoção ou nascimento:</string>
+    <string name="text_start_hour">Hora Inicial:</string>
+    <string name="text_final_hour">Hora Final:</string>
     <string name="errorNoGenderSelected">Para prosseguir, selecione o sexo.</string>
     <string name="const_male">Masculino</string>
     <string name="const_female">Feminino</string>
@@ -68,7 +70,8 @@
     <string name="text_pet_name">Nome do Pet</string>
     <string name="text_select_pet_photo">Para continuar, selecione uma imagem do Pet.</string>
     <string name="text_database_try_saving_object_null">Não foi possível salvar os dados</string>
-    <string name="text_internal_error">Erro interno - 01</string>
+    <string name="text_internal_error_01">Erro interno - 01</string>
+    <string name="text_internal_error_02">Erro interno - 02</string>
     <string name="text_const_type_user_vet">VET</string>
     <string name="text_const_type_user_client">CLIENT</string>
     <string name="text_save_user_successful">Usuário salvo com sucesso</string>
@@ -78,4 +81,8 @@
     <string name="text_wrong_user_login">Usuário inválido</string>
     <string name="text_wrong_user_password">Senha inválida</string>
     <string name="text_doing_logout">Saindo...</string>
+    <string name="text_empty_hour">——:——</string>
+    <string name="text_done">Pronto</string>
+    <string name="text_done_to_save_data">Pronto, as alterações serão aplicadas quando você clicar no botão SALVAR.</string>
+    <string name="text_no_hour_to_save">Nenhum horário para salvar.</string>
 </resources>
