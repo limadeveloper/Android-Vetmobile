@@ -135,7 +135,11 @@ public class MarkAssistanceActivity extends AppCompatActivity {
     }
 
     private boolean isYesterday(Date date) {
-        return new Date().after(date);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(Support.getDateFormat1());
+        Date todayDate = new Date();
+        String todayString = dateFormat.format(todayDate);
+        String dateString = dateFormat.format(date);
+        return todayDate.after(date) && !todayString.equals(dateString);
     }
 
     private void showMessageErrorSelectInvalidDate() {

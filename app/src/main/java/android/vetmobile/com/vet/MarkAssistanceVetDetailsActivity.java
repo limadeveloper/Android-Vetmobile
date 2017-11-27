@@ -73,8 +73,23 @@ public class MarkAssistanceVetDetailsActivity extends AppCompatActivity {
     private void configureListView() {
 
         List<String> hours = new ArrayList<>();
+        List<VetAvailability> availabilities = new ArrayList<>();
 
-        hours.add("Nenhum horário");
+        if (selectedDate != null) {
+            String dateString = selectedDate.replace("/", "-");
+            availabilities = VetAvailability.getResultsBy(selectedUser, dateString);
+        }
+
+        if (availabilities.size() > 0) {
+            int count = 1;
+            for (VetAvailability availability: availabilities) {
+                String itemHour = ""+ count +". Das "+ availability.getStartHour() +" às "+ availability.getFinishHour();
+                hours.add(itemHour);
+                count++;
+            }
+        }else {
+            hours.add("Nenhum horário");
+        }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, hours);
         listViewHours.setAdapter(adapter);

@@ -60,7 +60,7 @@
                 app:compactCalendarMultiEventIndicatorColor="@color/white"
                 app:compactCalendarDisplayOtherMonthDays="false"
                 app:compactCalendarOtherMonthDaysTextColor="@color/colorPrimary"
-                app:compactCalendarTargetHeight="290dp"
+                app:compactCalendarTargetHeight="270dp"
                 app:compactCalendarTextColor="@color/white"
                 app:compactCalendarTextSize="13sp" />
 
@@ -92,7 +92,7 @@
             <ListView
                 android:id="@+id/markassistance_listview_id"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="160dp">
             </ListView>
 
         </LinearLayout>
