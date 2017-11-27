@@ -15,7 +15,7 @@ import io.realm.annotations.PrimaryKey;
 public class VetAvailability extends RealmObject {
 
     @PrimaryKey
-    private String id;
+    private int id;
     private String date;
     private int weekDayNumber;
     private String weekDayName;
@@ -34,8 +34,8 @@ public class VetAvailability extends RealmObject {
         this.user = user;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public String getDate() { return date; }
     public void setDate(String date) { this.date = date; }
     public int getWeekDayNumber() { return weekDayNumber; }
@@ -74,7 +74,7 @@ public class VetAvailability extends RealmObject {
         return results;
     }
 
-    public static VetAvailability getAvailabilityById(String id, User currentUser) {
+    public static VetAvailability getAvailabilityById(int id, User currentUser) {
         Realm realm = Realm.getDefaultInstance();
         return realm.where(VetAvailability.class).equalTo(getKeyId(), id).equalTo(getKeyUserId(), currentUser.getId()).findFirst();
     }
@@ -94,7 +94,11 @@ public class VetAvailability extends RealmObject {
                 @Override
                 public void execute(Realm realm) {
                     if (availability != null) {
-                        String nextId = ""+ availability.getUser().getId() +""+ availability.getDate().replace("/","").toString().replace("-","");
+                        Number currentId = realm.where(VetAvailability.class).max(VetAvailability.getKeyId());
+                        int nextId = 1;
+                        if (currentId != null) {
+                            nextId = currentId.intValue() + 1;
+                        }
                         availability.setId(nextId);
                         realm.insertOrUpdate(availability);
                         return;
