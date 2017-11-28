@@ -43,6 +43,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/earlsGreen"
                 android:alpha="0.8"
+                android:clickable="true"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -243,7 +244,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/venetianRed"
+        android:backgroundTint="@color/red"
         app:borderWidth="0dp"
         android:src="@drawable/logout"/>
 
@@ -254,7 +255,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/colorAccent"
         app:borderWidth="0dp"
         android:src="@drawable/filter_variant"/>
 

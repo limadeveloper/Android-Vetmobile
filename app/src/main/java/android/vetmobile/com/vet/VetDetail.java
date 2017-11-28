@@ -21,20 +21,20 @@ public class VetDetail extends RealmObject {
     private String city;
     private String uf;
     private String cep;
-    private String crv;
+    private String crmv;
     private String domainArea;
     private User user;
 
     public VetDetail() {}
 
-    public VetDetail(String address, String addressNumber, String neighborhood, String city, String uf, String cep, String crv, String domainArea, User user) {
+    public VetDetail(String address, String addressNumber, String neighborhood, String city, String uf, String cep, String crmv, String domainArea, User user) {
         this.address = address;
         this.addressNumber = addressNumber;
         this.neighborhood = neighborhood;
         this.city = city;
         this.uf = uf;
         this.cep = cep;
-        this.crv = crv;
+        this.crmv = crmv;
         this.domainArea = domainArea;
         this.user = user;
     }
@@ -53,8 +53,8 @@ public class VetDetail extends RealmObject {
     public void setUf(String uf) {this.uf = uf;}
     public String getCep() {return cep;}
     public void setCep(String cep) {this.cep = cep;}
-    public String getCrv() {return crv;}
-    public void setCrv(String crv) {this.crv = crv;}
+    public String getCrmv() {return crmv;}
+    public void setCrmv(String crmv) {this.crmv = crmv;}
     public String getDomainArea() {return domainArea;}
     public void setDomainArea(String domainArea) {this.domainArea = domainArea;}
     public User getUser() {return user;}
@@ -63,6 +63,8 @@ public class VetDetail extends RealmObject {
     public static String getKeyID() {
         return "id";
     }
+
+    public static String getKeyUserID() { return "user.id"; }
 
     public static RealmResults<VetDetail> getVetDetails() {
         Realm realm = Realm.getDefaultInstance();
@@ -117,6 +119,11 @@ public class VetDetail extends RealmObject {
                 realm.close();
             }
         }
+    }
+
+    public static VetDetail getVetDetailByUserId(int userId) {
+        Realm realm = Realm.getDefaultInstance();
+        return realm.where(VetDetail.class).equalTo(getKeyUserID(), userId).findFirst();
     }
 
 }

@@ -73,6 +73,10 @@ public class User extends RealmObject {
         return "isLogged";
     }
 
+    public static String getKeyTypeUser() {
+        return "typeUser";
+    }
+
     public static RealmResults<User> getUsers() {
         Realm realm = Realm.getDefaultInstance();
         return realm.where(User.class).findAll();
@@ -179,6 +183,11 @@ public class User extends RealmObject {
             return TypeUserEnum.VET;
         }
         return TypeUserEnum.CLIENT;
+    }
+
+    public static RealmResults<User> getUsersBy(String typeUser) {
+        Realm realm = Realm.getDefaultInstance();
+        return realm.where(User.class).equalTo(getKeyTypeUser(), typeUser).findAll();
     }
 
 }

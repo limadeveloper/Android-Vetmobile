@@ -15,7 +15,7 @@ import io.realm.annotations.PrimaryKey;
 public class VetAvailability extends RealmObject {
 
     @PrimaryKey
-    private String id;
+    private int id;
     private String date;
     private int weekDayNumber;
     private String weekDayName;
@@ -34,8 +34,8 @@ public class VetAvailability extends RealmObject {
         this.user = user;
     }
 
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
     public String getDate() { return date; }
     public void setDate(String date) { this.date = date; }
     public int getWeekDayNumber() { return weekDayNumber; }
@@ -61,19 +61,27 @@ public class VetAvailability extends RealmObject {
         return "date";
     }
 
-    public static RealmResults<VetAvailability> getResults() {
-        Realm realm = Realm.getDefaultInstance();
-        return realm.where(VetAvailability.class).findAll();
+    public static String getKeyUserId() {
+        return "user.id";
     }
 
-    public static VetAvailability getAvailabilityById(String id) {
+    public static RealmResults<VetAvailability> getResultsBy(User currentUser, String date) {
         Realm realm = Realm.getDefaultInstance();
-        return realm.where(VetAvailability.class).equalTo(getKeyId(), id).findFirst();
+        RealmResults<VetAvailability> results = realm.where(VetAvailability.class).equalTo(getKeyUserId(), currentUser.getId()).findAll();
+        if (date != null) {
+            results = realm.where(VetAvailability.class).equalTo(getKeyUserId(), currentUser.getId()).equalTo(getKeyDate(), date).findAll();
+        }
+        return results;
     }
 
-    public static VetAvailability getAvailabilityByWeekDayNumber(int weekDayNumber) {
+    public static VetAvailability getAvailabilityById(int id, User currentUser) {
         Realm realm = Realm.getDefaultInstance();
-        VetAvailability result = realm.where(VetAvailability.class).equalTo(getKeyWeekDayNumber(), weekDayNumber).findFirst();
+        return realm.where(VetAvailability.class).equalTo(getKeyId(), id).equalTo(getKeyUserId(), currentUser.getId()).findFirst();
+    }
+
+    public static VetAvailability getAvailabilityByWeekDayNumber(int weekDayNumber, int userId) {
+        Realm realm = Realm.getDefaultInstance();
+        VetAvailability result = realm.where(VetAvailability.class).equalTo(getKeyUserId(), userId).equalTo(getKeyWeekDayNumber(), weekDayNumber).findFirst();
         Log.d("availability", " VetAvailability: "+ result);
         return result;
     }
@@ -86,7 +94,11 @@ public class VetAvailability extends RealmObject {
                 @Override
                 public void execute(Realm realm) {
                     if (availability != null) {
-                        String nextId = availability.getDate().replace("/","").toString().replace("-","");
+                        Number currentId = realm.where(VetAvailability.class).max(VetAvailability.getKeyId());
+                        int nextId = 1;
+                        if (currentId != null) {
+                            nextId = currentId.intValue() + 1;
+                        }
                         availability.setId(nextId);
                         realm.insertOrUpdate(availability);
                         return;
@@ -105,9 +117,10 @@ public class VetAvailability extends RealmObject {
         Realm realm = null;
         try {
             realm = Realm.getDefaultInstance();
-            RealmResults<VetAvailability> results = realm.where(VetAvailability.class).findAll();
+            User currentUser = User.getLoggedUser();
+            RealmResults<VetAvailability> results = realm.where(VetAvailability.class).equalTo(getKeyUserId(), currentUser.getId()).findAll();
             if (date != null) {
-                results = realm.where(VetAvailability.class).equalTo(getKeyDate(), date).findAll();
+                results = realm.where(VetAvailability.class).equalTo(getKeyUserId(), currentUser.getId()).equalTo(getKeyDate(), date).findAll();
             }
             final RealmResults<VetAvailability> finalResults = results;
             realm.executeTransaction(new Realm.Transaction() {

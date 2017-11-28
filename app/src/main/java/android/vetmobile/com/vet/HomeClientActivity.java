@@ -45,7 +45,8 @@ public class HomeClientActivity extends AppCompatActivity {
         listItem1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Do something here
+                Intent intent = new Intent(HomeClientActivity.this, MarkAssistanceActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -128,7 +129,7 @@ public class HomeClientActivity extends AppCompatActivity {
 
     private void showFABMenu() {
         isFABOpen = true;
-        fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_64));
+        fab1.animate().translationY(-getResources().getDimension(R.dimen.standard_70));
     }
 
     private void closeFABMenu() {

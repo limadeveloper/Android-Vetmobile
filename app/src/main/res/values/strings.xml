@@ -44,13 +44,15 @@
     <string name="const_typeUserClient">2</string>
     <string name="key_typeUser">KEY_TYPE_USER</string>
     <string name="key_current_user">KEY_CURRENT_USER</string>
+    <string name="key_user_id">KEY_USER_ID</string>
+    <string name="key_selected_date">KEY_SELECTED_DATE</string>
     <string name="text_address">Endereço</string>
     <string name="text_address_number">Nº</string>
     <string name="text_neighborhood">Bairro</string>
     <string name="text_city">Cidade</string>
     <string name="text_uf">UF</string>
     <string name="text_cep">CEP</string>
-    <string name="text_crv">CRV</string>
+    <string name="text_crmv">CRMV</string>
     <string name="text_domain_area">Especialidade</string>
     <string name="text_mark">Marcar</string>
     <string name="text_assistance">Atendimento</string>
@@ -81,6 +83,8 @@
     <string name="text_wrong_user_login">Usuário inválido</string>
     <string name="text_wrong_user_password">Senha inválida</string>
     <string name="text_doing_logout">Saindo...</string>
+    <string name="text_select_future_date">Data inválida. Selecione uma data futura.</string>
+    <string name="text_no_date_selected">Para prosseguir, selecione uma data.</string>
     <string name="text_empty_hour">——:——</string>
     <string name="text_done">Pronto</string>
     <string name="text_done_to_save_data">Pronto, as alterações serão aplicadas quando você clicar no botão SALVAR.</string>
